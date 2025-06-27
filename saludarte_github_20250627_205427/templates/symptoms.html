@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}Describe tus Síntomas - SaludArte App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-canatura-light text-center">
+                    <h2 class="text-canatura-dark mb-0">
+                        <i class="fas fa-stethoscope me-2"></i>Describe tus síntomas
+                    </h2>
+                    <p class="text-muted mb-0">Hoji está listo para ayudarte. Cuéntame cómo te sientes</p>
+                </div>
+                
+                <div class="card-body p-5">
+                    <!-- Examples section -->
+                    <div class="examples-section mb-4">
+                        <h6 class="text-canatura-green mb-3">
+                            <i class="fas fa-heart me-2"></i>Puedes contarme lo que sientes de la manera que te resulte más cómoda:
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="example-item">
+                                    <i class="fas fa-quote-left text-muted"></i>
+                                    <span>Me duele la cabeza y me siento muy cansado</span>
+                                </div>
+                                <div class="example-item">
+                                    <i class="fas fa-quote-left text-muted"></i>
+                                    <span>Tengo el estómago inflamado después de comer</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="example-item">
+                                    <i class="fas fa-quote-left text-muted"></i>
+                                    <span>Me siento estresado y no puedo dormir bien</span>
+                                </div>
+                                <div class="example-item">
+                                    <i class="fas fa-quote-left text-muted"></i>
+                                    <span>Tengo dolor de espalda y me siento sin energía</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="POST" action="{{ url_for('symptoms') }}" id="symptomsForm">
+                        <div class="mb-4">
+                            <label for="symptoms" class="form-label fw-bold">
+                                <i class="fas fa-pencil-alt me-2"></i>¿Cómo te sientes hoy?
+                            </label>
+                            <textarea class="form-control form-control-lg" id="symptoms" name="symptoms" 
+                                      rows="5" required 
+                                      placeholder="Describe tus síntomas en tus propias palabras. Puedes usar expresiones como 'me duele', 'me siento', 'tengo'..."
+                                      maxlength="1000"></textarea>
+                            <div class="form-text">
+                                <span id="charCount">0</span>/1000 caracteres
+                            </div>
+                        </div>
+
+                        <!-- Quick symptom buttons -->
+                        <div class="quick-symptoms mb-4">
+                            <h6 class="text-canatura-green mb-3">
+                                <i class="fas fa-mouse-pointer me-2"></i>O selecciona síntomas comunes:
+                            </h6>
+                            <div class="symptom-buttons">
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="dolor de cabeza">
+                                    <i class="fas fa-head-side-cough me-1"></i>Dolor de cabeza
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="cansancio">
+                                    <i class="fas fa-tired me-1"></i>Cansancio
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="estrés">
+                                    <i class="fas fa-brain me-1"></i>Estrés
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="dolor de estómago">
+                                    <i class="fas fa-stomach me-1"></i>Dolor de estómago
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="insomnio">
+                                    <i class="fas fa-moon me-1"></i>Insomnio
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="dolor de espalda">
+                                    <i class="fas fa-user-injured me-1"></i>Dolor de espalda
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="inflamación">
+                                    <i class="fas fa-fire me-1"></i>Inflamación
+                                </button>
+                                <button type="button" class="btn btn-outline-canatura-sm symptom-btn" data-symptom="digestión pesada">
+                                    <i class="fas fa-weight-hanging me-1"></i>Digestión pesada
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Important note -->
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Recuerda:</strong> Puedes usar expresiones naturales y coloquiales. 
+                            Mi inteligencia artificial comprende el español cotidiano y buscará los productos 
+                            más adecuados en nuestro catálogo.
+                        </div>
+
+                        <!-- Action buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('profile') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Volver al Perfil
+                            </a>
+                            <button type="submit" class="btn btn-canatura-primary btn-lg" id="submitBtn">
+                                <i class="fas fa-magic me-2"></i>Generar Sugerencias
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Update Hoji message for symptoms page
+    document.addEventListener('DOMContentLoaded', function() {
+        const hojiMessage = document.getElementById('hojiMessage');
+        const messages = [
+            "Describe cómo te sientes en tus propias palabras. No necesitas usar términos médicos, ¡yo te entiendo!",
+            "Puedes escribir algo como 'me duele la cabeza' o 'me siento muy cansado'. Soy muy bueno interpretando.",
+            "Entre más detalles me des, mejor podré ayudarte a encontrar productos naturales perfectos para ti."
+        ];
+        
+        let currentMessage = 0;
+        const updateMessage = () => {
+            hojiMessage.textContent = messages[currentMessage];
+            currentMessage = (currentMessage + 1) % messages.length;
+        };
+        
+        updateMessage();
+        setInterval(updateMessage, 5000);
+    });
+
+    // Character counter
+    const symptomsTextarea = document.getElementById('symptoms');
+    const charCount = document.getElementById('charCount');
+    
+    symptomsTextarea.addEventListener('input', function() {
+        charCount.textContent = this.value.length;
+        
+        // Change color when approaching limit
+        if (this.value.length > 900) {
+            charCount.style.color = 'red';
+        } else if (this.value.length > 700) {
+            charCount.style.color = 'orange';
+        } else {
+            charCount.style.color = '';
+        }
+    });
+
+    // Quick symptom buttons
+    document.querySelectorAll('.symptom-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const symptom = this.dataset.symptom;
+            const textarea = document.getElementById('symptoms');
+            
+            if (textarea.value.trim() === '') {
+                textarea.value = `Tengo ${symptom}`;
+            } else {
+                textarea.value += `, ${symptom}`;
+            }
+            
+            // Update character count
+            charCount.textContent = textarea.value.length;
+            
+            // Add visual feedback
+            this.classList.add('btn-canatura-primary');
+            this.classList.remove('btn-outline-canatura-sm');
+            setTimeout(() => {
+                this.classList.remove('btn-canatura-primary');
+                this.classList.add('btn-outline-canatura-sm');
+            }, 1000);
+        });
+    });
+
+    // Form submission with loading state
+    document.getElementById('symptomsForm').addEventListener('submit', function(e) {
+        const submitBtn = document.getElementById('submitBtn');
+        const symptoms = document.getElementById('symptoms').value.trim();
+        
+        if (symptoms.length < 10) {
+            e.preventDefault();
+            alert('Por favor describe tus síntomas con más detalle (mínimo 10 caracteres).');
+            return false;
+        }
+        
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Analizando síntomas...';
+        submitBtn.disabled = true;
+        
+        // Update Hoji message during processing
+        document.getElementById('hojiMessage').textContent = '¡Estoy analizando tus síntomas con mi inteligencia artificial! Esto tomará solo unos segundos...';
+    });
+
+    // Auto-resize textarea
+    symptomsTextarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    });
+</script>
+{% endblock %}

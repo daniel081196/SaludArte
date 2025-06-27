@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="skin" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#FFE4C4"/>
+      <stop offset="100%" style="stop-color:#F5C2A3"/>
+    </radialGradient>
+    
+    <linearGradient id="coat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#F0F0F0"/>
+    </linearGradient>
+    
+    <radialGradient id="hat" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#E8E8E8"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Sombra -->
+  <ellipse cx="100" cy="185" rx="40" ry="8" fill="#00000020"/>
+  
+  <!-- Piernas -->
+  <rect x="85" y="155" width="12" height="30" fill="#4A4A4A" rx="6"/>
+  <rect x="103" y="155" width="12" height="30" fill="#4A4A4A" rx="6"/>
+  
+  <!-- Zapatos -->
+  <ellipse cx="91" cy="185" rx="12" ry="4" fill="#8B4513"/>
+  <ellipse cx="109" cy="185" rx="12" ry="4" fill="#8B4513"/>
+  
+  <!-- Cuerpo - bata médica -->
+  <ellipse cx="100" cy="130" rx="35" ry="40" fill="url(#coat)" stroke="#E0E0E0" stroke-width="1"/>
+  
+  <!-- Botones -->
+  <circle cx="100" cy="115" r="2" fill="#E8E8E8" stroke="#C0C0C0" stroke-width="1"/>
+  <circle cx="100" cy="125" r="2" fill="#E8E8E8" stroke="#C0C0C0" stroke-width="1"/>
+  <circle cx="100" cy="135" r="2" fill="#E8E8E8" stroke="#C0C0C0" stroke-width="1"/>
+  
+  <!-- Corbata -->
+  <path d="M95,100 L105,100 L107,120 L102,140 L98,140 L93,120 Z" fill="#DC143C"/>
+  
+  <!-- Cuello -->
+  <path d="M90,95 Q100,90 110,95 L106,110 Q100,105 94,110 Z" fill="#FFFFFF"/>
+  
+  <!-- Cabeza -->
+  <circle cx="100" cy="70" r="30" fill="url(#skin)" stroke="#E8A87C" stroke-width="1"/>
+  
+  <!-- Orejas -->
+  <circle cx="75" cy="70" r="6" fill="url(#skin)"/>
+  <circle cx="125" cy="70" r="6" fill="url(#skin)"/>
+  <circle cx="75" cy="70" r="3" fill="#F5C2A3"/>
+  <circle cx="125" cy="70" r="3" fill="#F5C2A3"/>
+  
+  <!-- Gorro médico -->
+  <ellipse cx="100" cy="50" rx="28" ry="12" fill="url(#hat)" stroke="#D0D0D0" stroke-width="1"/>
+  <ellipse cx="100" cy="47" rx="24" ry="10" fill="#FFFFFF"/>
+  
+  <!-- Cruz médica verde -->
+  <rect x="96" y="42" width="8" height="10" fill="#00AA00"/>
+  <rect x="90" y="45" width="20" height="4" fill="#00AA00"/>
+  
+  <!-- Ojos grandes -->
+  <ellipse cx="88" cy="65" rx="6" ry="8" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+  <ellipse cx="112" cy="65" rx="6" ry="8" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+  <circle cx="88" cy="65" r="4" fill="#4A90E2"/>
+  <circle cx="112" cy="65" r="4" fill="#4A90E2"/>
+  <circle cx="88" cy="63" r="2" fill="#000000"/>
+  <circle cx="112" cy="63" r="2" fill="#000000"/>
+  <circle cx="89" cy="62" r="1" fill="#FFFFFF"/>
+  <circle cx="113" cy="62" r="1" fill="#FFFFFF"/>
+  
+  <!-- Cejas -->
+  <path d="M82,58 Q88,55 94,58" stroke="#8B4513" stroke-width="2" fill="none"/>
+  <path d="M106,58 Q112,55 118,58" stroke="#8B4513" stroke-width="2" fill="none"/>
+  
+  <!-- Nariz -->
+  <ellipse cx="100" cy="75" rx="2" ry="4" fill="#F5C2A3"/>
+  
+  <!-- Bigote pequeño -->
+  <ellipse cx="100" cy="80" rx="8" ry="3" fill="#8B4513"/>
+  
+  <!-- Sonrisa -->
+  <path d="M90,85 Q100,92 110,85" stroke="#000000" stroke-width="2" fill="none"/>
+  
+  <!-- Brazos -->
+  <ellipse cx="70" cy="115" rx="8" ry="18" fill="url(#skin)" transform="rotate(-20 70 115)"/>
+  <ellipse cx="130" cy="115" rx="8" ry="18" fill="url(#skin)" transform="rotate(20 130 115)"/>
+  
+  <!-- Manos con guantes -->
+  <circle cx="58" cy="105" r="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <circle cx="142" cy="105" r="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  
+  <!-- Estetoscopio -->
+  <path d="M92,105 Q88,115 92,125" stroke="#C0C0C0" stroke-width="2" fill="none"/>
+  <path d="M108,105 Q112,115 108,125" stroke="#C0C0C0" stroke-width="2" fill="none"/>
+  <circle cx="100" cy="128" r="4" fill="#C0C0C0"/>
+  
+  <!-- Nombre -->
+  <text x="100" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#228B22" font-weight="bold">
+    Dr. SaludArte
+  </text>
+</svg>

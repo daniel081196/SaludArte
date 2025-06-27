@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Bienvenido a SaludArte App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="row min-vh-100 align-items-center">
+        <div class="col-lg-6">
+            <div class="hero-content">
+                <h1 class="display-4 fw-bold text-canatura-dark mb-4">
+                    ¡Hola! Bienvenido a <span class="text-canatura-green">SaludArte</span>
+                </h1>
+                <p class="lead mb-4">
+                    Soy Hoji, tu especialista en productos naturales. 
+                    Con mi experiencia y conocimiento de remedios naturales, 
+                    te ayudo a encontrar las mejores soluciones para tu bienestar.
+                </p>
+                
+                <div class="feature-list mb-4">
+                    <div class="feature-item">
+                        <i class="fas fa-stethoscope text-canatura-green me-3"></i>
+                        <span>Diagnóstico rápido y efectivo de tus síntomas</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-pills text-canatura-green me-3"></i>
+                        <span>Los mejores power-ups naturales para tu salud</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-trophy text-canatura-green me-3"></i>
+                        <span>Sugerencias ganadoras y personalizadas</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt text-canatura-green me-3"></i>
+                        <span>100% seguro, sin efectos secundarios negativos</span>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="{{ url_for('profile') }}" class="btn btn-canatura-primary btn-lg me-3">
+                        <i class="fas fa-user-md me-2"></i>Iniciar consulta
+                    </a>
+                    <button type="button" class="btn btn-outline-canatura btn-lg" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                        <i class="fas fa-info-circle me-2"></i>Más Información
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="hero-illustration text-center">
+                <img src="{{ url_for('static', filename='images/dr-verde-profesional.png') }}?v=999" alt="Hoji" class="hero-mascot">
+                <div class="floating-elements">
+                    <div class="floating-icon floating-icon-1">🌿</div>
+                    <div class="floating-icon floating-icon-2">💊</div>
+                    <div class="floating-icon floating-icon-3">🏥</div>
+                    <div class="floating-icon floating-icon-4">❤️</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it works section -->
+    <div class="row py-5">
+        <div class="col-12">
+            <h2 class="text-center text-canatura-dark mb-5">¿Cómo funciona?</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h4>1. Tu Perfil</h4>
+                        <p>Comparte información básica sobre tu edad, condiciones de salud y características personales.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>2. Describe Síntomas</h4>
+                        <p>Explica cómo te sientes en tus propias palabras. Nuestro AI comprende el lenguaje natural.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-prescription-bottle-alt"></i>
+                        </div>
+                        <h4>3. Receta Natural</h4>
+                        <p>Recibe sugerencias personalizadas con productos naturales y modo de uso detallado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Section (Admin) -->
+
+</div>
+
+<!-- About Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Acerca de SaludArte App</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h6>🤖 Inteligencia Artificial Responsable</h6>
+                <p>SaludArte utiliza tecnología de IA avanzada para analizar tus síntomas, pero <strong>solo recomienda productos que están en nuestro catálogo oficial</strong>. No improvisa ni inventa productos.</p>
+                
+                <h6>🛡️ Seguridad Primero</h6>
+                <p>Nuestro sistema verifica automáticamente contraindicaciones basadas en tu perfil de salud (diabetes, hipertensión, embarazo, etc.) para evitar sugerencias inadecuadas.</p>
+                
+                <h6>📋 Formato Médico</h6>
+                <p>Las sugerencias se presentan en formato de receta médica con dosificación, modo de uso, duración sugerida y advertencias importantes.</p>
+                
+                <h6>📱 Comparte y Guarda</h6>
+                <p>Puedes imprimir, guardar en PDF o compartir tus sugerencias por WhatsApp para llevarlas contigo o consultar con tu médico.</p>
+                
+                <div class="alert alert-warning">
+                    <strong>Importante:</strong> SaludArte es un asistente digital que complementa, pero no reemplaza, la consulta médica profesional. Siempre consulta con tu médico antes de iniciar cualquier tratamiento.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-canatura-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Update Hoji message for landing page
+    document.addEventListener('DOMContentLoaded', function() {
+        const messages = [
+            "¡Hola! Soy Hoji y estoy súper emocionado de conocerte. ¡Vamos a cuidar tu salud juntos!",
+            "¿Cómo te sientes hoy? Cuéntame todo, yo te voy a ayudar a sentirte mucho mejor.",
+            "¡Me encanta ayudar a las personas! Dime qué necesitas y encontraremos los mejores productos naturales para ti.",
+            "Soy tu amiguito de la salud natural. ¡Juntos vamos a encontrar exactamente lo que necesitas!"
+        ];
+        
+        let currentMessage = 0;
+        setInterval(() => {
+            currentMessage = (currentMessage + 1) % messages.length;
+            document.getElementById('hojiMessage').textContent = messages[currentMessage];
+        }, 5000);
+    });
+</script>
+{% endblock %}
+
+{% block footer %}
+<!-- Footer discreto con acceso maestro -->
+<footer class="text-center py-3 mt-5" style="font-size: 0.8rem; color: #ccc;">
+    <div class="container">
+        <p>&copy; 2024 SaludArte by Canatura. Sistema de Salud Natural Inteligente.</p>
+        <p>
+            <a href="#" class="text-muted text-decoration-none" style="font-size: 0.7rem;" 
+               onclick="if(prompt('Código de acceso:') === 'master2024') window.location.href='/master/login'">
+                ·
+            </a>
+        </p>
+    </div>
+</footer>
+{% endblock %}

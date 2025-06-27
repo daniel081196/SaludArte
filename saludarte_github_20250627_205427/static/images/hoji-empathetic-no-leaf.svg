@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes para dar profundidad y calidez -->
+    <radialGradient id="bodyGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8E6B8;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="cheekGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FFB6C1;stop-opacity:0.3" />
+    </radialGradient>
+    
+    <!-- Sombra suave -->
+    <filter id="softShadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- Brillo en los ojos -->
+    <filter id="eyeGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Sombra base -->
+  <ellipse cx="100" cy="185" rx="45" ry="8" fill="#000000" opacity="0.1"/>
+  
+  <!-- Cuerpo principal - forma más redondeada y suave -->
+  <ellipse cx="100" cy="120" rx="55" ry="65" fill="url(#bodyGradient)" filter="url(#softShadow)"/>
+  
+  <!-- Cabeza - más grande y expresiva -->
+  <circle cx="100" cy="70" r="45" fill="url(#bodyGradient)" filter="url(#softShadow)"/>
+  
+  <!-- Mejillas sonrosadas -->
+  <circle cx="70" cy="75" r="12" fill="url(#cheekGradient)"/>
+  <circle cx="130" cy="75" r="12" fill="url(#cheekGradient)"/>
+  
+  <!-- Ojos - más grandes y expresivos -->
+  <g>
+    <!-- Ojo izquierdo -->
+    <ellipse cx="88" cy="65" rx="8" ry="12" fill="#2F4F2F"/>
+    <ellipse cx="88" cy="62" rx="6" ry="9" fill="#000000"/>
+    <circle cx="90" cy="59" r="2.5" fill="#FFFFFF" filter="url(#eyeGlow)"/>
+    <circle cx="85" cy="61" r="1" fill="#FFFFFF" opacity="0.7"/>
+    
+    <!-- Ojo derecho -->
+    <ellipse cx="112" cy="65" rx="8" ry="12" fill="#2F4F2F"/>
+    <ellipse cx="112" cy="62" rx="6" ry="9" fill="#000000"/>
+    <circle cx="110" cy="59" r="2.5" fill="#FFFFFF" filter="url(#eyeGlow)"/>
+    <circle cx="115" cy="61" r="1" fill="#FFFFFF" opacity="0.7"/>
+  </g>
+  
+  <!-- Cejas suaves -->
+  <path d="M82,50 Q88,47 94,50" stroke="#228B22" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M106,50 Q112,47 118,50" stroke="#228B22" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Nariz pequeña y tierna -->
+  <ellipse cx="100" cy="75" rx="2" ry="3" fill="#90EE90" opacity="0.6"/>
+  
+  <!-- Sonrisa cálida y acogedora -->
+  <path d="M85,85 Q100,95 115,85" stroke="#228B22" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="92" cy="87" r="1.5" fill="#228B22" opacity="0.6"/>
+  <circle cx="108" cy="87" r="1.5" fill="#228B22" opacity="0.6"/>
+  
+  <!-- Brazos extendidos en gesto acogedor -->
+  <g>
+    <!-- Brazo izquierdo -->
+    <ellipse cx="60" cy="110" rx="8" ry="25" fill="url(#bodyGradient)" transform="rotate(-30 60 110)"/>
+    <circle cx="50" cy="95" r="10" fill="url(#bodyGradient)"/>
+    
+    <!-- Mano izquierda con deditos -->
+    <circle cx="45" cy="90" r="6" fill="#B8E6B8"/>
+    <circle cx="42" cy="85" r="2" fill="#B8E6B8"/>
+    <circle cx="46" cy="83" r="2" fill="#B8E6B8"/>
+    <circle cx="50" cy="85" r="2" fill="#B8E6B8"/>
+    
+    <!-- Brazo derecho -->
+    <ellipse cx="140" cy="110" rx="8" ry="25" fill="url(#bodyGradient)" transform="rotate(30 140 110)"/>
+    <circle cx="150" cy="95" r="10" fill="url(#bodyGradient)"/>
+    
+    <!-- Mano derecha con deditos -->
+    <circle cx="155" cy="90" r="6" fill="#B8E6B8"/>
+    <circle cx="158" cy="85" r="2" fill="#B8E6B8"/>
+    <circle cx="154" cy="83" r="2" fill="#B8E6B8"/>
+    <circle cx="150" cy="85" r="2" fill="#B8E6B8"/>
+  </g>
+  
+  <!-- Piernas regordetas -->
+  <ellipse cx="85" cy="165" rx="12" ry="20" fill="url(#bodyGradient)"/>
+  <ellipse cx="115" cy="165" rx="12" ry="20" fill="url(#bodyGradient)"/>
+  
+  <!-- Piecitos adorables -->
+  <ellipse cx="80" cy="180" rx="8" ry="5" fill="#90EE90"/>
+  <ellipse cx="120" cy="180" rx="8" ry="5" fill="#90EE90"/>
+  
+  <!-- Detalles de ternura -->
+  <!-- Pequeñas hojas flotando -->
+  <g opacity="0.6">
+    <path d="M25,40 Q20,35 25,30 Q30,35 25,40Z" fill="#90EE90" transform="rotate(45 25 35)"/>
+    <path d="M175,45 Q170,40 175,35 Q180,40 175,45Z" fill="#90EE90" transform="rotate(-30 175 40)"/>
+    <path d="M30,160 Q25,155 30,150 Q35,155 30,160Z" fill="#90EE90" transform="rotate(15 30 155)"/>
+  </g>
+  
+  <!-- Corazoncito pequeño flotando -->
+  <path d="M165,25 C165,20 175,20 175,25 C175,20 185,20 185,25 C185,35 175,40 175,40 C175,40 165,35 165,25Z" 
+        fill="#FFB6C1" opacity="0.7"/>
+  
+  <!-- Texto de bienvenida sutil -->
+  <text x="100" y="195" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="12" fill="#228B22" opacity="0.8">
+    ¡Hola! Soy Hoji 🌿
+  </text>
+</svg>

@@ -1,0 +1,374 @@
+{% extends "base.html" %}
+
+{% block title %}Panel Maestro - SaludArte{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-shield-alt text-canatura-green"></i> Panel de Administración Maestro</h2>
+                <div>
+                    <span class="badge bg-success">{{ master_info.username }}</span>
+                    <a href="{{ url_for('master_logout') }}" class="btn btn-outline-danger btn-sm ms-2">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estadísticas Principales -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card text-center">
+                <h3 class="text-primary">324</h3>
+                <p class="mb-0">Productos en Catálogo</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card text-center">
+                <h3 class="text-success">0</h3>
+                <p class="mb-0">Consultas (30 días)</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card text-center">
+                <h3 class="text-warning">0</h3>
+                <p class="mb-0">Casos Sin Resolver</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card text-center">
+                <h3 class="text-info">96%</h3>
+                <p class="mb-0">Cobertura Sistema</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pestañas de Navegación -->
+    <ul class="nav nav-pills mb-4" id="masterTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="catalog-tab" data-bs-toggle="pill" data-bs-target="#catalog" type="button" role="tab">
+                <i class="fas fa-box"></i> Gestión de Catálogo
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="movements-tab" data-bs-toggle="pill" data-bs-target="#movements" type="button" role="tab">
+                <i class="fas fa-chart-line"></i> Movimientos
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="unresolved-tab" data-bs-toggle="pill" data-bs-target="#unresolved" type="button" role="tab">
+                <i class="fas fa-question-circle"></i> Casos Sin Resolver
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="analytics-tab" data-bs-toggle="pill" data-bs-target="#analytics" type="button" role="tab">
+                <i class="fas fa-chart-bar"></i> Análisis Avanzado
+            </button>
+        </li>
+    </ul>
+
+    <!-- Contenido de Pestañas -->
+    <div class="tab-content" id="masterTabsContent">
+        <!-- Pestaña Gestión de Catálogo -->
+        <div class="tab-pane fade show active" id="catalog" role="tabpanel">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5><i class="fas fa-search"></i> Gestión de Catálogo</h5>
+                    <div>
+                        <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <i class="fas fa-plus"></i> Agregar Producto
+                        </button>
+                        <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#uploadCatalogModal">
+                            <i class="fas fa-upload"></i> Subir Catálogo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Búsqueda de Productos -->
+                <div class="row mb-3">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Buscar productos...">
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select" id="categoryFilter">
+                            <option value="">Todas las categorías</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Tabla de Productos -->
+                <div class="table-responsive">
+                    <table class="table table-master">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Presentación</th>
+                                <th>Síntomas</th>
+                                <th>Beneficios</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTable">
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña Movimientos -->
+        <div class="tab-pane fade" id="movements" role="tabpanel">
+            <div class="stat-card">
+                <h5><i class="fas fa-history"></i> Historial de Movimientos</h5>
+                <div class="table-responsive mt-3">
+                    <table class="table table-master">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Producto</th>
+                                <th>Acción</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="movementsTable">
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña Casos Sin Resolver -->
+        <div class="tab-pane fade" id="unresolved" role="tabpanel">
+            <div class="stat-card">
+                <h5><i class="fas fa-clipboard-list"></i> Casos Sin Resolver</h5>
+                <div class="table-responsive mt-3">
+                    <table class="table table-master">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Síntomas</th>
+                                <th>Estado</th>
+                                <th>Notas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unresolvedTable">
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña Análisis Avanzado -->
+        <div class="tab-pane fade" id="analytics" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-chart-line"></i> Uso de la Aplicación (30 días)</h5>
+                        <div id="usageAnalytics">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <div class="stat-number text-primary" id="totalConsultas">0</div>
+                                        <div class="stat-label">Total Consultas</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <div class="stat-number text-success" id="promedioDiario">0</div>
+                                        <div class="stat-label">Promedio Diario</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-pills"></i> Productos Más Recomendados</h5>
+                        <div id="topProducts">
+                            <p class="text-muted">No hay datos disponibles aún</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-stethoscope"></i> Síntomas Más Consultados</h5>
+                        <div id="topSymptoms">
+                            <p class="text-muted">No hay datos disponibles aún</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Análisis de Problemas</h5>
+                        <div id="problemAnalysis">
+                            <div class="mb-3">
+                                <strong>Categorías de Problemas Sin Resolver:</strong>
+                                <div id="problemCategories" class="mt-2">
+                                    <p class="text-muted">No hay casos sin resolver</p>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <strong>Recomendaciones de Mejora:</strong>
+                                <ul id="improvementSuggestions" class="mt-2">
+                                    <li class="text-muted">Sistema funcionando correctamente</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Subir Catálogo -->
+<div class="modal fade" id="uploadCatalogModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Subir Nuevo Catálogo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="uploadCatalogForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="catalogFile" class="form-label">Archivo de Catálogo</label>
+                        <input type="file" class="form-control" id="catalogFile" name="catalog" accept=".xlsx,.xls" required>
+                        <div class="form-text">Solo archivos Excel (.xlsx) con las columnas: PRODUCTO, SINTOMAS, BENEFICIOS, PRESENTACION</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Subir Catálogo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Agregar Producto -->
+<div class="modal fade" id="addProductModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar Nuevo Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addProductForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" name="PRODUCTO" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Presentación</label>
+                                <input type="text" class="form-control" name="PRESENTACION">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Síntomas</label>
+                                <textarea class="form-control" name="SINTOMAS" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Beneficios</label>
+                                <textarea class="form-control" name="BENEFICIOS" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Agregar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/master_dashboard.js') }}"></script>
+<script>
+// Inicializar Dashboard Maestro Simplificado
+document.addEventListener('DOMContentLoaded', function() {
+    const dashboard = new MasterDashboard();
+    dashboard.init();
+});
+</script>
+
+<style>
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.table-master {
+    background: white;
+}
+
+.table-master th {
+    background-color: #f8f9fa;
+    border-top: none;
+    font-weight: 600;
+}
+
+.nav-pills .nav-link {
+    color: #666;
+    border-radius: 8px;
+    margin-right: 5px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--canatura-green);
+    color: white;
+}
+
+.btn-master {
+    border-radius: 6px;
+    font-weight: 500;
+}
+</style>
+{% endblock %}

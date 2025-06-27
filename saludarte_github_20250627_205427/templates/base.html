@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SaludArte App{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/canatura-logo.svg') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}">
+                <span class="fw-bold text-canatura-green">SaludArte App</span>
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{{ url_for('reset') }}">
+                    <i class="fas fa-home me-1"></i>Inicio
+                </a>
+                <a class="nav-link text-muted" href="/master/login" title="Acceso Maestro" style="font-size: 0.9rem;">
+                    <i class="fas fa-lock"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress indicator -->
+    {% if request.endpoint in ['profile', 'symptoms', 'recommendations'] %}
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="progress-container">
+                    <div class="step {% if request.endpoint == 'profile' %}active{% elif request.endpoint in ['symptoms', 'recommendations'] %}completed{% endif %}">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Perfil</div>
+                    </div>
+                    <div class="step {% if request.endpoint == 'symptoms' %}active{% elif request.endpoint == 'recommendations' %}completed{% endif %}">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Síntomas</div>
+                    </div>
+                    <div class="step {% if request.endpoint == 'recommendations' %}active{% endif %}">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Receta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container mt-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                        <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'info-circle' if category == 'info' else 'check-circle' if category == 'success' else 'exclamation-circle' }} me-2"></i>
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Hoji Mascot -->
+    <div class="hoji-container" id="hojiContainer">
+        <div class="hoji-mascot" id="hojiMascot">
+            <img src="{{ url_for('static', filename='images/dr-verde-profesional.png') }}?v=999" alt="Hoji" class="hoji-image">
+            <div class="hoji-bubble" id="hojiBubble">
+                <p id="hojiMessage">¡Hola! Soy Hoji, tu especialista en salud natural. Estoy aquí para ayudarte a encontrar los mejores productos para tu bienestar.</p>
+                <div class="bubble-arrow"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 SaludArte App by Canatura</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="mb-0">Asistente Digital de Salud Natural 
+                        <a href="/master/login" class="text-muted text-decoration-none ms-2" style="font-size: 0.8rem;" title="Acceso Maestro">
+                            🔐
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,166 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dr. Hoji TIERNO Y ANIMADO - Con cuerpo completo y forma -->
+  
+  <!-- Sombra suave -->
+  <ellipse cx="200" cy="385" rx="50" ry="10" fill="#4CAF50" opacity="0.2">
+    <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="4s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Grupo principal con respiración suave -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-5; 0,0" dur="5s" repeatCount="indefinite"/>
+    
+    <!-- Piernas definidas -->
+    <ellipse cx="180" cy="340" rx="22" ry="40" fill="#66BB6A" stroke="#388E3C" stroke-width="3"/>
+    <ellipse cx="220" cy="340" rx="22" ry="40" fill="#66BB6A" stroke="#388E3C" stroke-width="3"/>
+    
+    <!-- Zapatos profesionales -->
+    <ellipse cx="180" cy="375" rx="30" ry="18" fill="#2C3E50" stroke="#1A252F" stroke-width="3"/>
+    <ellipse cx="220" cy="375" rx="30" ry="18" fill="#2C3E50" stroke="#1A252F" stroke-width="3"/>
+    <ellipse cx="180" cy="370" rx="25" ry="12" fill="#34495E"/>
+    <ellipse cx="220" cy="370" rx="25" ry="12" fill="#34495E"/>
+    
+    <!-- Cuerpo bien formado -->
+    <ellipse cx="200" cy="250" rx="65" ry="85" fill="#66BB6A" stroke="#388E3C" stroke-width="4"/>
+    
+    <!-- Bata médica profesional -->
+    <path d="M145 200 Q145 185 160 185 L240 185 Q255 185 255 200 L255 315 Q255 325 245 325 L155 325 Q145 325 145 315 Z" 
+          fill="white" stroke="#388E3C" stroke-width="4"/>
+    
+    <!-- Solapas de la bata -->
+    <path d="M160 185 L180 205 L160 205 Z" fill="#F5F5F5"/>
+    <path d="M240 185 L220 205 L240 205 Z" fill="#F5F5F5"/>
+    
+    <!-- Bolsillo de la bata -->
+    <rect x="170" y="270" width="60" height="25" rx="5" fill="none" stroke="#388E3C" stroke-width="2"/>
+    
+    <!-- Botones de la bata -->
+    <circle cx="200" cy="220" r="5" fill="#4CAF50"/>
+    <circle cx="200" cy="245" r="5" fill="#4CAF50"/>
+    <circle cx="200" cy="270" r="5" fill="#4CAF50"/>
+    <circle cx="200" cy="295" r="5" fill="#4CAF50"/>
+    
+    <!-- Brazo izquierdo completo -->
+    <ellipse cx="120" cy="230" rx="18" ry="45" fill="white" stroke="#388E3C" stroke-width="3" transform="rotate(-25 120 230)">
+      <animateTransform attributeName="transform" type="rotate" values="-25 120 230; -20 120 230; -25 120 230" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="105" cy="275" rx="12" ry="25" fill="#66BB6A" stroke="#388E3C" stroke-width="3" transform="rotate(-15 105 275)">
+      <animateTransform attributeName="transform" type="rotate" values="-15 105 275; -10 105 275; -15 105 275" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Mano izquierda -->
+    <circle cx="95" cy="300" r="14" fill="#66BB6A" stroke="#388E3C" stroke-width="3">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 2,-3; 0,0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Brazo derecho saludando -->
+    <ellipse cx="280" cy="230" rx="18" ry="45" fill="white" stroke="#388E3C" stroke-width="3" transform="rotate(35 280 230)">
+      <animateTransform attributeName="transform" type="rotate" values="35 280 230; 45 280 230; 35 280 230" dur="2s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="300" cy="275" rx="12" ry="25" fill="#66BB6A" stroke="#388E3C" stroke-width="3" transform="rotate(25 300 275)">
+      <animateTransform attributeName="transform" type="rotate" values="25 300 275; 35 300 275; 25 300 275" dur="2s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Mano derecha saludando -->
+    <g transform="translate(315, 295)">
+      <circle cx="0" cy="0" r="14" fill="#66BB6A" stroke="#388E3C" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" values="0; 15; 0" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Dedos saludando -->
+      <ellipse cx="-2" cy="-8" rx="2" ry="8" fill="#66BB6A">
+        <animateTransform attributeName="transform" type="rotate" values="0; 20; 0" dur="1s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="2" cy="-10" rx="2" ry="10" fill="#66BB6A">
+        <animateTransform attributeName="transform" type="rotate" values="0; -15; 0" dur="1.2s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="6" cy="-8" rx="2" ry="8" fill="#66BB6A">
+        <animateTransform attributeName="transform" type="rotate" values="0; -25; 0" dur="1.1s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+    
+    <!-- Cabeza bien proporcionada -->
+    <circle cx="200" cy="130" r="55" fill="#66BB6A" stroke="#388E3C" stroke-width="4">
+      <animate attributeName="r" values="55;56;55" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Hojas naturales como cabello -->
+    <path d="M175 85 Q170 65 180 60 Q190 65 185 85 Q180 95 175 85 Z" fill="#8BC34A" stroke="#689F38" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 180 75; 3 180 75; 0 180 75" dur="6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M200 80 Q195 55 210 50 Q220 60 215 80 Q210 92 200 80 Z" fill="#8BC34A" stroke="#689F38" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 210 65; -2 210 65; 0 210 65" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M225 85 Q230 65 220 60 Q210 65 215 85 Q220 95 225 85 Z" fill="#8BC34A" stroke="#689F38" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 220 75; -3 220 75; 0 220 75" dur="7s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Ojos expresivos y tiernos -->
+    <ellipse cx="185" cy="125" rx="12" ry="15" fill="white"/>
+    <ellipse cx="215" cy="125" rx="12" ry="15" fill="white"/>
+    <ellipse cx="185" cy="128" rx="8" ry="10" fill="#2E7D32">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 1,0; 0,0" dur="6s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="215" cy="128" rx="8" ry="10" fill="#2E7D32">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -1,0; 0,0" dur="6s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Brillos en los ojos -->
+    <circle cx="182" cy="123" r="3" fill="white">
+      <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="212" cy="123" r="3" fill="white">
+      <animate attributeName="opacity" values="1;0.5;1" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Cejas amigables -->
+    <path d="M175 115 Q185 110 195 115" fill="none" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    <path d="M205 115 Q215 110 225 115" fill="none" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Mejillas sonrojadas sutiles -->
+    <circle cx="160" cy="140" r="8" fill="#FFB3BA" opacity="0.6"/>
+    <circle cx="240" cy="140" r="8" fill="#FFB3BA" opacity="0.6"/>
+    
+    <!-- Nariz pequeña -->
+    <circle cx="200" cy="135" r="2" fill="#5D8E61"/>
+    
+    <!-- Sonrisa amigable -->
+    <path d="M180 150 Q200 165 220 150" fill="none" stroke="#2E7D32" stroke-width="4" stroke-linecap="round">
+      <animate attributeName="stroke-width" values="4;5;4" dur="4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Estetoscopio profesional -->
+    <path d="M165 185 Q150 180 145 200 Q140 220 145 235 Q160 230 165 210" 
+          fill="none" stroke="#2C3E50" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="145" cy="217" r="8" fill="#34495E" stroke="#2C3E50" stroke-width="2"/>
+    <circle cx="145" cy="217" r="5" fill="#BDC3C7"/>
+    <path d="M165 185 Q175 180 185 185" fill="none" stroke="#2C3E50" stroke-width="3"/>
+    <circle cx="165" cy="185" r="3" fill="#34495E"/>
+    <circle cx="185" cy="185" r="3" fill="#34495E"/>
+    
+    <!-- Placa de identificación -->
+    <rect x="210" y="260" width="35" height="20" rx="3" fill="white" stroke="#388E3C" stroke-width="2"/>
+    <text x="227" y="272" text-anchor="middle" font-family="Arial" font-size="8" fill="#388E3C">Dr. Hoji</text>
+    
+    <!-- Cruz médica en la bata -->
+    <g transform="translate(200, 310)">
+      <rect x="-8" y="-15" width="16" height="30" fill="#E53935" rx="2"/>
+      <rect x="-15" y="-8" width="30" height="16" fill="#E53935" rx="2"/>
+    </g>
+  </g>
+  
+  <!-- Partículas flotantes sutiles -->
+  <g opacity="0.6">
+    <circle cx="320" cy="150" r="2" fill="#8BC34A">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -5,-15; 0,-30" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="80" cy="200" r="1.5" fill="#8BC34A">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 5,-20; 0,-40" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="340" cy="250" r="2.5" fill="#8BC34A">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -8,-12; 0,-25" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0" dur="6s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

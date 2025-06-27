@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Tu Perfil - SaludArte App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-canatura-light text-center">
+                    <h2 class="text-canatura-dark mb-0">
+                        <i class="fas fa-user-circle me-2"></i>Tu Perfil de Salud
+                    </h2>
+                    <p class="text-muted mb-0">Hoji necesita conocerte para darte las mejores sugerencias</p>
+                </div>
+                
+                <div class="card-body p-5">
+                    <form method="POST" action="{{ url_for('profile') }}" id="profileForm">
+                        <!-- Basic Information -->
+                        <div class="section-header">
+                            <h5 class="text-canatura-green"><i class="fas fa-info-circle me-2"></i>Información Básica</h5>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <label for="name" class="form-label fw-bold">Nombre completo *</label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" 
+                                       required placeholder="Ej: María García" maxlength="100">
+                                <div class="form-text">Para personalizar tu receta natural</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="age" class="form-label fw-bold">Edad *</label>
+                                <input type="number" class="form-control form-control-lg" id="age" name="age" 
+                                       min="1" max="120" required placeholder="Ej: 35">
+                                <div class="form-text">Ayuda a determinar dosificaciones apropiadas</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="gender" class="form-label fw-bold">Género *</label>
+                                <select class="form-select form-select-lg" id="gender" name="gender" required>
+                                    <option value="">Selecciona...</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <div class="form-text">Algunos productos son específicos por género</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="weight" class="form-label fw-bold">Peso (kg)</label>
+                                <input type="number" class="form-control form-control-lg" id="weight" name="weight" 
+                                       min="20" max="300" step="0.1" placeholder="Ej: 70">
+                                <div class="form-text">Opcional - para dosificaciones precisas</div>
+                            </div>
+                        </div>
+
+                        <!-- Health Conditions -->
+                        <div class="section-header">
+                            <h5 class="text-canatura-green"><i class="fas fa-heart me-2"></i>Condiciones de Salud</h5>
+                            <p class="text-muted">Marca las condiciones que tengas para evitar contraindicaciones</p>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-check form-check-custom">
+                                    <input class="form-check-input" type="checkbox" id="diabetes" name="diabetes">
+                                    <label class="form-check-label" for="diabetes">
+                                        <i class="fas fa-syringe me-2 text-warning"></i>Diabetes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-custom">
+                                    <input class="form-check-input" type="checkbox" id="hypertension" name="hypertension">
+                                    <label class="form-check-label" for="hypertension">
+                                        <i class="fas fa-heartbeat me-2 text-danger"></i>Hipertensión
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check form-check-custom">
+                                    <input class="form-check-input" type="checkbox" id="pregnancy" name="pregnancy">
+                                    <label class="form-check-label" for="pregnancy">
+                                        <i class="fas fa-baby me-2 text-info"></i>Embarazo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="section-header">
+                            <h5 class="text-canatura-green"><i class="fas fa-notes-medical me-2"></i>Información Adicional</h5>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="allergies" class="form-label fw-bold">Alergias conocidas</label>
+                            <textarea class="form-control" id="allergies" name="allergies" rows="2" 
+                                      placeholder="Ej: polen, mariscos, frutos secos..."></textarea>
+                            <div class="form-text">Ayuda a evitar ingredientes problemáticos</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="medications" class="form-label fw-bold">Medicamentos actuales</label>
+                            <textarea class="form-control" id="medications" name="medications" rows="2" 
+                                      placeholder="Ej: aspirina, metformina..."></textarea>
+                            <div class="form-text">Para verificar posibles interacciones</div>
+                        </div>
+
+                        <!-- Privacy Notice -->
+                        <div class="alert alert-info">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            <strong>Privacidad:</strong> Tu información solo se usa para generar sugerencias personalizadas 
+                            y no se almacena permanentemente en nuestros servidores.
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-canatura-primary btn-lg">
+                                <i class="fas fa-arrow-right me-2"></i>Continuar a Síntomas
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Update Hoji message for profile page
+    document.addEventListener('DOMContentLoaded', function() {
+        const hojiMessage = document.getElementById('hojiMessage');
+        const messages = [
+            "Necesito conocerte un poco para darte las mejores sugerencias. ¡No te preocupes, es información segura!",
+            "Entre más me cuentes sobre ti, más precisa será mi ayuda. Tu privacidad está protegida.",
+            "Esta información me ayuda a evitar productos que no sean adecuados para ti."
+        ];
+        
+        let currentMessage = 0;
+        const updateMessage = () => {
+            hojiMessage.textContent = messages[currentMessage];
+            currentMessage = (currentMessage + 1) % messages.length;
+        };
+        
+        updateMessage();
+        setInterval(updateMessage, 4000);
+    });
+
+    // Form validation and UX improvements
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+        const age = document.getElementById('age').value;
+        const gender = document.getElementById('gender').value;
+        
+        if (!age || !gender) {
+            e.preventDefault();
+            alert('Por favor completa los campos obligatorios (edad y género).');
+            return false;
+        }
+        
+        if (age < 1 || age > 120) {
+            e.preventDefault();
+            alert('Por favor ingresa una edad válida (1-120 años).');
+            return false;
+        }
+    });
+
+    // Show relevant fields based on gender
+    document.getElementById('gender').addEventListener('change', function() {
+        const pregnancyCheck = document.getElementById('pregnancy').closest('.form-check');
+        if (this.value === 'masculino') {
+            pregnancyCheck.style.display = 'none';
+            document.getElementById('pregnancy').checked = false;
+        } else {
+            pregnancyCheck.style.display = 'block';
+        }
+    });
+</script>
+{% endblock %}

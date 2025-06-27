@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes para simular modelado 3D -->
+    <radialGradient id="skinGradient" cx="40%" cy="30%" r="80%">
+      <stop offset="0%" style="stop-color:#FFE4C4;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#F5C2A3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E8A87C;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="coatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F8F8F8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E8E8E8;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="hatGradient" cx="40%" cy="20%" r="80%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#F0F0F0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D8D8D8;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="tieGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC143C;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B91C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B1538;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="eyeGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#2171B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1B4F72;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Sombras 3D -->
+    <filter id="shadow3D">
+      <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+    
+    <filter id="innerShadow">
+      <feOffset dx="2" dy="3"/>
+      <feGaussianBlur stdDeviation="2" result="offset-blur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.1"/>
+      <feComposite in2="offset-blur" operator="in"/>
+    </filter>
+  </defs>
+  
+  <!-- Sombra base del personaje -->
+  <ellipse cx="100" cy="220" rx="55" ry="12" fill="#000000" opacity="0.15"/>
+  
+  <!-- Piernas -->
+  <ellipse cx="85" cy="190" rx="14" ry="25" fill="#4A4A4A"/>
+  <ellipse cx="115" cy="190" rx="14" ry="25" fill="#4A4A4A"/>
+  
+  <!-- Zapatos con detalles 3D -->
+  <ellipse cx="78" cy="210" rx="18" ry="8" fill="#8B4513" filter="url(#shadow3D)"/>
+  <ellipse cx="122" cy="210" rx="18" ry="8" fill="#8B4513" filter="url(#shadow3D)"/>
+  <ellipse cx="78" cy="208" rx="14" ry="6" fill="#A0522D"/>
+  <ellipse cx="122" cy="208" rx="14" ry="6" fill="#A0522D"/>
+  
+  <!-- Cuerpo principal - bata médica -->
+  <ellipse cx="100" cy="145" rx="48" ry="50" fill="url(#coatGradient)" filter="url(#shadow3D)"/>
+  
+  <!-- Detalles de la bata -->
+  <rect x="88" y="110" width="24" height="70" fill="url(#coatGradient)"/>
+  
+  <!-- Botones de la bata -->
+  <circle cx="100" cy="125" r="3.5" fill="#E8E8E8" stroke="#C0C0C0" stroke-width="1"/>
+  <circle cx="100" cy="140" r="3.5" fill="#E8E8E8" stroke="#C0C0C0" stroke-width="1"/>
+  <circle cx="100" cy="155" r="3.5" fill="#E8E8E8" stroke="#C0C0C0" stroke-width="1"/>
+  
+  <!-- Corbata roja -->
+  <path d="M95,105 L105,105 L108,125 L102,150 L98,150 L92,125 Z" 
+        fill="url(#tieGradient)" filter="url(#innerShadow)"/>
+  
+  <!-- Cuello de la camisa -->
+  <path d="M88,100 Q100,95 112,100 L108,115 Q100,110 92,115 Z" fill="#FFFFFF"/>
+  
+  <!-- Cabeza con modelado 3D -->
+  <circle cx="100" cy="75" r="42" fill="url(#skinGradient)" filter="url(#shadow3D)"/>
+  
+  <!-- Orejas -->
+  <ellipse cx="68" cy="75" rx="8" ry="12" fill="url(#skinGradient)" transform="rotate(-20 68 75)"/>
+  <ellipse cx="132" cy="75" rx="8" ry="12" fill="url(#skinGradient)" transform="rotate(20 132 75)"/>
+  <ellipse cx="68" cy="75" rx="4" ry="6" fill="#F5C2A3" transform="rotate(-20 68 75)"/>
+  <ellipse cx="132" cy="75" rx="4" ry="6" fill="#F5C2A3" transform="rotate(20 132 75)"/>
+  
+  <!-- Gorro médico -->
+  <ellipse cx="100" cy="50" rx="38" ry="18" fill="url(#hatGradient)" filter="url(#shadow3D)"/>
+  <ellipse cx="100" cy="46" rx="32" ry="14" fill="#FFFFFF"/>
+  
+  <!-- Cruz médica en el gorro -->
+  <rect x="95" y="38" width="10" height="16" fill="#00AA00"/>
+  <rect x="87" y="43" width="26" height="6" fill="#00AA00"/>
+  
+  <!-- Reflector médico en la cabeza -->
+  <ellipse cx="120" cy="55" rx="8" ry="6" fill="#C0C0C0" transform="rotate(15 120 55)"/>
+  <ellipse cx="120" cy="55" rx="5" ry="4" fill="#E8E8E8" transform="rotate(15 120 55)"/>
+  <circle cx="122" cy="54" r="1.5" fill="#FFFFFF"/>
+  
+  <!-- Ojos grandes estilo Nintendo -->
+  <g>
+    <!-- Ojo izquierdo -->
+    <ellipse cx="88" cy="70" rx="10" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="88" cy="70" rx="7" ry="9" fill="url(#eyeGradient)"/>
+    <circle cx="88" cy="68" r="3" fill="#000000"/>
+    <circle cx="90" cy="66" r="2" fill="#FFFFFF" filter="url(#shadow3D)"/>
+    <ellipse cx="89" cy="65" rx="0.8" ry="1.2" fill="#FFFFFF" opacity="0.8"/>
+    
+    <!-- Ojo derecho -->
+    <ellipse cx="112" cy="70" rx="10" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="112" cy="70" rx="7" ry="9" fill="url(#eyeGradient)"/>
+    <circle cx="112" cy="68" r="3" fill="#000000"/>
+    <circle cx="110" cy="66" r="2" fill="#FFFFFF" filter="url(#shadow3D)"/>
+    <ellipse cx="111" cy="65" rx="0.8" ry="1.2" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+  
+  <!-- Cejas expresivas -->
+  <path d="M80,60 Q88,56 96,60" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M104,60 Q112,56 120,60" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Nariz con volumen 3D -->
+  <ellipse cx="100" cy="80" rx="4" ry="6" fill="#F5C2A3"/>
+  <ellipse cx="100" cy="78" rx="2.5" ry="4" fill="url(#skinGradient)"/>
+  <ellipse cx="101" cy="77" rx="1" ry="2" fill="#FFFFFF" opacity="0.5"/>
+  
+  <!-- Bigote estilo Mario pero más sutil -->
+  <ellipse cx="100" cy="86" rx="12" ry="4" fill="#654321"/>
+  <ellipse cx="95" cy="85" rx="6" ry="2.5" fill="#8B4513"/>
+  <ellipse cx="105" cy="85" rx="6" ry="2.5" fill="#8B4513"/>
+  
+  <!-- Sonrisa amigable -->
+  <path d="M88,92 Q100,100 112,92" stroke="#000000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Brazos con guantes médicos -->
+  <g>
+    <!-- Brazo izquierdo -->
+    <ellipse cx="62" cy="125" rx="10" ry="22" fill="url(#skinGradient)" transform="rotate(-25 62 125)"/>
+    <circle cx="50" cy="108" r="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+    
+    <!-- Dedos del guante izquierdo -->
+    <ellipse cx="45" cy="100" rx="3" ry="6" fill="#FFFFFF"/>
+    <ellipse cx="49" cy="98" rx="3" ry="7" fill="#FFFFFF"/>
+    <ellipse cx="53" cy="99" rx="3" ry="6" fill="#FFFFFF"/>
+    <ellipse cx="57" cy="101" rx="2.5" ry="5" fill="#FFFFFF"/>
+    
+    <!-- Brazo derecho sosteniendo estetoscopio -->
+    <ellipse cx="138" cy="125" rx="10" ry="22" fill="url(#skinGradient)" transform="rotate(25 138 125)"/>
+    <circle cx="150" cy="108" r="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+    
+    <!-- Estetoscopio en la mano derecha -->
+    <circle cx="155" cy="105" r="4" fill="#C0C0C0"/>
+    <circle cx="155" cy="105" r="2.5" fill="#808080"/>
+  </g>
+  
+  <!-- Estetoscopio colgando del cuello -->
+  <path d="M90,110 Q85,120 90,135" stroke="#C0C0C0" stroke-width="3" fill="none"/>
+  <path d="M110,110 Q115,120 110,135" stroke="#C0C0C0" stroke-width="3" fill="none"/>
+  <circle cx="100" cy="140" r="6" fill="#C0C0C0"/>
+  <circle cx="100" cy="140" r="4" fill="#808080"/>
+  
+  <!-- Efectos de brillo estilo Nintendo -->
+  <g opacity="0.7">
+    <!-- Brillos en la bata -->
+    <ellipse cx="85" cy="130" rx="8" ry="15" fill="#FFFFFF" opacity="0.3"/>
+    <ellipse cx="115" cy="140" rx="6" ry="12" fill="#FFFFFF" opacity="0.2"/>
+    
+    <!-- Partículas de salud flotando -->
+    <circle cx="30" cy="60" r="2" fill="#00FF00" opacity="0.8"/>
+    <circle cx="170" cy="80" r="1.5" fill="#00FF00" opacity="0.8"/>
+    <circle cx="25" cy="120" r="1.8" fill="#00AA00" opacity="0.8"/>
+    <circle cx="175" cy="140" r="2.2" fill="#00FF00" opacity="0.8"/>
+    
+    <!-- Cruz pequeña flotante -->
+    <g transform="translate(35,45) scale(0.8)">
+      <rect x="-2" y="-4" width="4" height="8" fill="#FF0000"/>
+      <rect x="-4" y="-2" width="8" height="4" fill="#FF0000"/>
+    </g>
+  </g>
+  
+  <!-- Nombre del personaje -->
+  <text x="100" y="235" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="11" fill="#228B22" font-weight="bold">
+    Dr. SaludArte
+  </text>
+</svg>

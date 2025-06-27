@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes para la piel -->
+    <radialGradient id="skinGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5DEB3;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradientes para el cabello -->
+    <radialGradient id="hairGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradientes para la ropa -->
+    <radialGradient id="clothesGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#98FB98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90EE90;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradientes para las mejillas -->
+    <radialGradient id="cheekGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FFB6C1;stop-opacity:0.3" />
+    </radialGradient>
+    
+    <!-- Sombra suave -->
+    <filter id="softShadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+    
+    <!-- Brillo en los ojos -->
+    <filter id="eyeGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Sombra base -->
+  <ellipse cx="100" cy="185" rx="35" ry="6" fill="#000000" opacity="0.1"/>
+  
+  <!-- Cuerpo - vestido verde suave -->
+  <ellipse cx="100" cy="135" rx="40" ry="50" fill="url(#clothesGradient)" filter="url(#softShadow)"/>
+  
+  <!-- Cuello -->
+  <ellipse cx="100" cy="95" rx="12" ry="8" fill="url(#skinGradient)"/>
+  
+  <!-- Cabeza -->
+  <circle cx="100" cy="75" r="35" fill="url(#skinGradient)" filter="url(#softShadow)"/>
+  
+  <!-- Cabello - estilo bob corto y amigable -->
+  <g>
+    <!-- Base del cabello -->
+    <path d="M70,50 Q75,35 100,35 Q125,35 130,50 Q135,65 125,75 Q115,80 100,78 Q85,80 75,75 Q65,65 70,50Z" 
+          fill="url(#hairGradient)" filter="url(#softShadow)"/>
+    
+    <!-- Flequillo -->
+    <path d="M80,45 Q90,40 100,42 Q110,40 120,45 Q115,50 100,48 Q85,50 80,45Z" 
+          fill="url(#hairGradient)"/>
+    
+    <!-- Mechones laterales -->
+    <ellipse cx="75" cy="65" rx="8" ry="15" fill="url(#hairGradient)" transform="rotate(-15 75 65)"/>
+    <ellipse cx="125" cy="65" rx="8" ry="15" fill="url(#hairGradient)" transform="rotate(15 125 65)"/>
+  </g>
+  
+  <!-- Mejillas sonrosadas -->
+  <circle cx="75" cy="80" r="8" fill="url(#cheekGradient)"/>
+  <circle cx="125" cy="80" r="8" fill="url(#cheekGradient)"/>
+  
+  <!-- Ojos grandes y expresivos -->
+  <g>
+    <!-- Ojo izquierdo -->
+    <ellipse cx="90" cy="70" rx="6" ry="8" fill="#FFFFFF"/>
+    <circle cx="90" cy="70" r="4" fill="#8B4513"/>
+    <circle cx="90" cy="69" r="2.5" fill="#000000"/>
+    <circle cx="91" cy="67" r="1.2" fill="#FFFFFF" filter="url(#eyeGlow)"/>
+    
+    <!-- Ojo derecho -->
+    <ellipse cx="110" cy="70" rx="6" ry="8" fill="#FFFFFF"/>
+    <circle cx="110" cy="70" r="4" fill="#8B4513"/>
+    <circle cx="110" cy="69" r="2.5" fill="#000000"/>
+    <circle cx="111" cy="67" r="1.2" fill="#FFFFFF" filter="url(#eyeGlow)"/>
+    
+    <!-- Pestañas -->
+    <path d="M85,65 Q87,63 89,65" stroke="#654321" stroke-width="1" fill="none"/>
+    <path d="M91,65 Q93,63 95,65" stroke="#654321" stroke-width="1" fill="none"/>
+    <path d="M105,65 Q107,63 109,65" stroke="#654321" stroke-width="1" fill="none"/>
+    <path d="M111,65 Q113,63 115,65" stroke="#654321" stroke-width="1" fill="none"/>
+  </g>
+  
+  <!-- Cejas expresivas -->
+  <path d="M85,62 Q90,60 95,62" stroke="#654321" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M105,62 Q110,60 115,62" stroke="#654321" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Nariz pequeña -->
+  <ellipse cx="100" cy="78" rx="1.5" ry="2" fill="#F5DEB3"/>
+  <circle cx="99" cy="79" r="0.5" fill="#DDD" opacity="0.5"/>
+  <circle cx="101" cy="79" r="0.5" fill="#DDD" opacity="0.5"/>
+  
+  <!-- Sonrisa cálida -->
+  <path d="M88,85 Q100,92 112,85" stroke="#CD5C5C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Brazos en posición acogedora -->
+  <g>
+    <!-- Brazo izquierdo -->
+    <ellipse cx="65" cy="115" rx="6" ry="20" fill="url(#skinGradient)" transform="rotate(-25 65 115)"/>
+    
+    <!-- Mano izquierda haciendo gesto de saludo -->
+    <circle cx="55" cy="105" r="7" fill="url(#skinGradient)"/>
+    <ellipse cx="52" cy="100" rx="1.5" ry="4" fill="url(#skinGradient)" transform="rotate(-10 52 100)"/>
+    <ellipse cx="55" cy="98" rx="1.5" ry="4" fill="url(#skinGradient)" transform="rotate(10 55 98)"/>
+    <ellipse cx="58" cy="100" rx="1.5" ry="4" fill="url(#skinGradient)" transform="rotate(30 58 100)"/>
+    
+    <!-- Brazo derecho -->
+    <ellipse cx="135" cy="115" rx="6" ry="20" fill="url(#skinGradient)" transform="rotate(25 135 115)"/>
+    
+    <!-- Mano derecha con corazón -->
+    <circle cx="145" cy="105" r="7" fill="url(#skinGradient)"/>
+    <path d="M142,102 C142,100 144,100 144,102 C144,100 146,100 146,102 C146,106 144,108 144,108 C144,108 142,106 142,102Z" 
+          fill="#FF69B4" opacity="0.8"/>
+  </g>
+  
+  <!-- Piernas -->
+  <ellipse cx="85" cy="170" rx="8" ry="15" fill="url(#skinGradient)"/>
+  <ellipse cx="115" cy="170" rx="8" ry="15" fill="url(#skinGradient)"/>
+  
+  <!-- Zapatos amigables -->
+  <ellipse cx="83" cy="182" rx="10" ry="4" fill="#228B22"/>
+  <ellipse cx="117" cy="182" rx="10" ry="4" fill="#228B22"/>
+  <circle cx="87" cy="181" r="1" fill="#FFFFFF"/>
+  <circle cx="113" cy="181" r="1" fill="#FFFFFF"/>
+  
+  <!-- Detalles adorables flotando -->
+  <g opacity="0.7">
+    <!-- Corazoncitos -->
+    <path d="M25,30 C25,27 27,27 27,30 C27,27 29,27 29,30 C29,33 27,35 27,35 C27,35 25,33 25,30Z" 
+          fill="#FF69B4"/>
+    
+    <path d="M170,40 C170,38 172,38 172,40 C172,38 174,38 174,40 C174,42 172,44 172,44 C172,44 170,42 170,40Z" 
+          fill="#FF69B4"/>
+    
+    <!-- Estrellitas de salud -->
+    <path d="M40,160 L42,165 L47,165 L43,168 L45,173 L40,170 L35,173 L37,168 L33,165 L38,165 Z" 
+          fill="#FFD700"/>
+    
+    <path d="M165,160 L167,163 L170,163 L168,165 L169,168 L165,166 L161,168 L162,165 L160,163 L163,163 Z" 
+          fill="#FFD700"/>
+  </g>
+  
+  <!-- Stethoscope como accesorio médico -->
+  <g opacity="0.8">
+    <path d="M85,100 Q80,110 85,120" stroke="#C0C0C0" stroke-width="2" fill="none"/>
+    <path d="M115,100 Q120,110 115,120" stroke="#C0C0C0" stroke-width="2" fill="none"/>
+    <circle cx="100" cy="125" r="4" fill="#C0C0C0"/>
+    <circle cx="100" cy="125" r="2" fill="#808080"/>
+  </g>
+  
+  <!-- Nombre -->
+  <text x="100" y="195" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="11" fill="#228B22" opacity="0.9">
+    ¡Hola! Soy Maya 💚
+  </text>
+</svg>

@@ -1,0 +1,174 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dr. Hoji - Diseño Orgánico y Anatómicamente Correcto -->
+  
+  <!-- Sombra suave -->
+  <ellipse cx="200" cy="390" rx="40" ry="8" fill="#388E3C" opacity="0.2">
+    <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="4s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Personaje completo -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="6s" repeatCount="indefinite"/>
+    
+    <!-- Pierna izquierda completa -->
+    <ellipse cx="180" cy="330" rx="18" ry="45" fill="#66BB6A" stroke="#388E3C" stroke-width="2"/>
+    <ellipse cx="180" cy="365" rx="16" ry="25" fill="#66BB6A" stroke="#388E3C" stroke-width="2"/>
+    
+    <!-- Pierna derecha completa -->
+    <ellipse cx="220" cy="330" rx="18" ry="45" fill="#66BB6A" stroke="#388E3C" stroke-width="2"/>
+    <ellipse cx="220" cy="365" rx="16" ry="25" fill="#66BB6A" stroke="#388E3C" stroke-width="2"/>
+    
+    <!-- Pies con zapatos -->
+    <ellipse cx="180" cy="385" rx="25" ry="12" fill="#1A1A1A" stroke="#000000" stroke-width="2"/>
+    <ellipse cx="220" cy="385" rx="25" ry="12" fill="#1A1A1A" stroke="#000000" stroke-width="2"/>
+    <ellipse cx="180" cy="382" rx="20" ry="8" fill="#333333"/>
+    <ellipse cx="220" cy="382" rx="20" ry="8" fill="#333333"/>
+    
+    <!-- Torso orgánico -->
+    <ellipse cx="200" cy="250" rx="55" ry="75" fill="#66BB6A" stroke="#388E3C" stroke-width="3"/>
+    
+    <!-- Bata médica natural -->
+    <path d="M155 195 Q155 185 165 185 L235 185 Q245 185 245 195 L245 315 Q245 325 235 325 L165 325 Q155 325 155 315 Z" 
+          fill="white" stroke="#388E3C" stroke-width="3"/>
+    
+    <!-- Cuello de la bata -->
+    <path d="M180 185 Q200 190 220 185" fill="none" stroke="#388E3C" stroke-width="3"/>
+    
+    <!-- Botones de la bata -->
+    <circle cx="200" cy="210" r="3" fill="#4CAF50"/>
+    <circle cx="200" cy="230" r="3" fill="#4CAF50"/>
+    <circle cx="200" cy="250" r="3" fill="#4CAF50"/>
+    <circle cx="200" cy="270" r="3" fill="#4CAF50"/>
+    <circle cx="200" cy="290" r="3" fill="#4CAF50"/>
+    
+    <!-- Brazo izquierdo completo -->
+    <ellipse cx="130" cy="220" rx="16" ry="40" fill="white" stroke="#388E3C" stroke-width="2" transform="rotate(-20 130 220)">
+      <animateTransform attributeName="transform" type="rotate" values="-20 130 220; -15 130 220; -20 130 220" dur="5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="115" cy="265" rx="12" ry="30" fill="#66BB6A" stroke="#388E3C" stroke-width="2" transform="rotate(-15 115 265)">
+      <animateTransform attributeName="transform" type="rotate" values="-15 115 265; -10 115 265; -15 115 265" dur="5s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Mano izquierda completa -->
+    <ellipse cx="105" cy="300" rx="10" ry="15" fill="#66BB6A" stroke="#388E3C" stroke-width="2" transform="rotate(-10 105 300)">
+      <animateTransform attributeName="transform" type="rotate" values="-10 105 300; -5 105 300; -10 105 300" dur="5s" repeatCount="indefinite"/>
+    </ellipse>
+    <!-- Dedos mano izquierda -->
+    <ellipse cx="98" cy="290" rx="2" ry="8" fill="#66BB6A" transform="rotate(-15 98 290)"/>
+    <ellipse cx="101" cy="288" rx="2" ry="10" fill="#66BB6A" transform="rotate(-10 101 288)"/>
+    <ellipse cx="104" cy="286" rx="2" ry="9" fill="#66BB6A" transform="rotate(-5 104 286)"/>
+    <ellipse cx="107" cy="288" rx="2" ry="8" fill="#66BB6A" transform="rotate(0 107 288)"/>
+    
+    <!-- Brazo derecho completo saludando -->
+    <ellipse cx="270" cy="220" rx="16" ry="40" fill="white" stroke="#388E3C" stroke-width="2" transform="rotate(25 270 220)">
+      <animateTransform attributeName="transform" type="rotate" values="25 270 220; 35 270 220; 25 270 220" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="295" cy="265" rx="12" ry="30" fill="#66BB6A" stroke="#388E3C" stroke-width="2" transform="rotate(20 295 265)">
+      <animateTransform attributeName="transform" type="rotate" values="20 295 265; 30 295 265; 20 295 265" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Mano derecha saludando completa -->
+    <ellipse cx="315" cy="295" rx="10" ry="15" fill="#66BB6A" stroke="#388E3C" stroke-width="2" transform="rotate(15 315 295)">
+      <animateTransform attributeName="transform" type="rotate" values="15 315 295; 25 315 295; 15 315 295" dur="2s" repeatCount="indefinite"/>
+    </ellipse>
+    <!-- Dedos saludando -->
+    <ellipse cx="325" cy="285" rx="2" ry="8" fill="#66BB6A" transform="rotate(30 325 285)">
+      <animateTransform attributeName="transform" type="rotate" values="30 325 285; 50 325 285; 30 325 285" dur="1.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="322" cy="283" rx="2" ry="10" fill="#66BB6A" transform="rotate(20 322 283)">
+      <animateTransform attributeName="transform" type="rotate" values="20 322 283; 35 322 283; 20 322 283" dur="1.8s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="319" cy="281" rx="2" ry="9" fill="#66BB6A" transform="rotate(15 319 281)">
+      <animateTransform attributeName="transform" type="rotate" values="15 319 281; 25 319 281; 15 319 281" dur="1.3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="316" cy="283" rx="2" ry="8" fill="#66BB6A" transform="rotate(10 316 283)">
+      <animateTransform attributeName="transform" type="rotate" values="10 316 283; 20 316 283; 10 316 283" dur="1.6s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Cabeza orgánica -->
+    <ellipse cx="200" cy="130" rx="45" ry="50" fill="#66BB6A" stroke="#388E3C" stroke-width="3">
+      <animate attributeName="ry" values="50;51;50" dur="6s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Hojas naturales como cabello -->
+    <path d="M175 85 Q170 60 185 55 Q195 65 185 85 Q180 95 175 85 Z" fill="#81C784" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 180 70; 5 180 70; 0 180 70" dur="8s" repeatCount="indefinite"/>
+    </path>
+    <path d="M200 75 Q195 45 215 40 Q225 55 215 75 Q210 90 200 75 Z" fill="#81C784" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 210 57; -3 210 57; 0 210 57" dur="7s" repeatCount="indefinite"/>
+    </path>
+    <path d="M225 85 Q230 60 215 55 Q205 65 215 85 Q220 95 225 85 Z" fill="#81C784" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 220 70; -5 220 70; 0 220 70" dur="9s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Nervaduras de las hojas -->
+    <line x1="180" y1="70" x2="180" y2="85" stroke="#4CAF50" stroke-width="1"/>
+    <line x1="210" y1="57" x2="210" y2="75" stroke="#4CAF50" stroke-width="1"/>
+    <line x1="220" y1="70" x2="220" y2="85" stroke="#4CAF50" stroke-width="1"/>
+    
+    <!-- Ojos expresivos -->
+    <ellipse cx="185" cy="120" rx="12" ry="14" fill="white"/>
+    <ellipse cx="215" cy="120" rx="12" ry="14" fill="white"/>
+    <ellipse cx="185" cy="125" rx="8" ry="9" fill="#2E7D32">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 1,0; 0,0" dur="8s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="215" cy="125" rx="8" ry="9" fill="#2E7D32">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -1,0; 0,0" dur="8s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Brillos en los ojos -->
+    <ellipse cx="182" cy="118" rx="3" ry="4" fill="white">
+      <animate attributeName="opacity" values="1;0.5;1" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="212" cy="118" rx="3" ry="4" fill="white">
+      <animate attributeName="opacity" values="1;0.5;1" dur="4s" begin="0.5s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Cejas naturales -->
+    <path d="M175 105 Q185 100 195 105" fill="none" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    <path d="M205 105 Q215 100 225 105" fill="none" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Mejillas -->
+    <ellipse cx="160" cy="140" rx="8" ry="6" fill="#FFB3BA" opacity="0.6"/>
+    <ellipse cx="240" cy="140" rx="8" ry="6" fill="#FFB3BA" opacity="0.6"/>
+    
+    <!-- Nariz -->
+    <ellipse cx="200" cy="135" rx="3" ry="4" fill="#4CAF50"/>
+    
+    <!-- Sonrisa natural -->
+    <path d="M180 150 Q200 165 220 150" fill="none" stroke="#2E7D32" stroke-width="4" stroke-linecap="round">
+      <animate attributeName="stroke-width" values="4;5;4" dur="6s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Estetoscopio completo -->
+    <path d="M165 185 Q145 180 140 195 Q135 210 140 220 Q155 215 165 200" 
+          fill="none" stroke="#424242" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="140" cy="207" rx="8" ry="10" fill="#616161" stroke="#424242" stroke-width="2"/>
+    <ellipse cx="140" cy="207" rx="5" ry="7" fill="#E0E0E0">
+      <animate attributeName="fill" values="#E0E0E0;#F5F5F5;#E0E0E0" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <path d="M165 185 Q175 180 185 185" fill="none" stroke="#424242" stroke-width="3"/>
+    <ellipse cx="165" cy="185" rx="3" ry="4" fill="#616161"/>
+    <ellipse cx="185" cy="185" rx="3" ry="4" fill="#616161"/>
+    
+    <!-- Cruz médica en el pecho -->
+    <ellipse cx="200" cy="310" rx="15" ry="18" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2"/>
+    <path d="M193 310 L207 310 M200 303 L200 317" stroke="#4CAF50" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Placa de identificación -->
+    <ellipse cx="225" cy="275" rx="20" ry="12" fill="white" stroke="#4CAF50" stroke-width="2"/>
+    <text x="225" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#4CAF50">Dr. Hoji</text>
+  </g>
+  
+  <!-- Efectos naturales -->
+  <g opacity="0.5">
+    <ellipse cx="320" cy="150" rx="2" ry="3" fill="#81C784">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -8,-15; 0,-30" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0" dur="10s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="80" cy="200" rx="1.5" ry="2" fill="#81C784">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 6,-12; 0,-25" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0" dur="12s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+</svg>

@@ -1,0 +1,172 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hoji Adorable - Diseño Tierno y Amigable -->
+  
+  <!-- Sombra suave -->
+  <ellipse cx="200" cy="390" rx="50" ry="10" fill="#4CAF50" opacity="0.15">
+    <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="4s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Personaje completo -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-5; 0,0" dur="5s" repeatCount="indefinite"/>
+    
+    <!-- Cuerpo principal - más redondeado y tierno -->
+    <ellipse cx="200" cy="280" rx="65" ry="85" fill="#66BB6A" stroke="#4CAF50" stroke-width="3">
+      <animate attributeName="rx" values="65;67;65" dur="6s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Barriguita adorable -->
+    <ellipse cx="200" cy="300" rx="45" ry="55" fill="#81C784" opacity="0.6"/>
+    
+    <!-- Brazitos cortos y regordetes -->
+    <ellipse cx="140" cy="250" rx="20" ry="45" fill="#66BB6A" stroke="#4CAF50" stroke-width="2" transform="rotate(-15 140 250)">
+      <animateTransform attributeName="transform" type="rotate" values="-15 140 250; -20 140 250; -15 140 250" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="260" cy="250" rx="20" ry="45" fill="#66BB6A" stroke="#4CAF50" stroke-width="2" transform="rotate(15 260 250)">
+      <animateTransform attributeName="transform" type="rotate" values="15 260 250; 20 260 250; 15 260 250" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Manitas redonditas -->
+    <circle cx="125" cy="290" r="18" fill="#66BB6A" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -2,1; 0,0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="275" cy="290" r="18" fill="#66BB6A" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 2,1; 0,0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Deditos adorables -->
+    <circle cx="115" cy="285" r="4" fill="#4CAF50"/>
+    <circle cx="120" cy="280" r="4" fill="#4CAF50"/>
+    <circle cx="125" cy="275" r="4" fill="#4CAF50"/>
+    <circle cx="130" cy="280" r="4" fill="#4CAF50"/>
+    <circle cx="135" cy="285" r="4" fill="#4CAF50"/>
+    
+    <circle cx="285" cy="285" r="4" fill="#4CAF50"/>
+    <circle cx="280" cy="280" r="4" fill="#4CAF50"/>
+    <circle cx="275" cy="275" r="4" fill="#4CAF50"/>
+    <circle cx="270" cy="280" r="4" fill="#4CAF50"/>
+    <circle cx="265" cy="285" r="4" fill="#4CAF50"/>
+    
+    <!-- Piernitas cortas y adorables -->
+    <ellipse cx="175" cy="350" rx="20" ry="35" fill="#66BB6A" stroke="#4CAF50" stroke-width="2"/>
+    <ellipse cx="225" cy="350" rx="20" ry="35" fill="#66BB6A" stroke="#4CAF50" stroke-width="2"/>
+    
+    <!-- Zapatitos tiernos -->
+    <ellipse cx="175" cy="380" rx="18" ry="12" fill="#FFB74D" stroke="#F57C00" stroke-width="2"/>
+    <ellipse cx="225" cy="380" rx="18" ry="12" fill="#FFB74D" stroke="#F57C00" stroke-width="2"/>
+    <circle cx="175" cy="375" r="3" fill="#FFF"/>
+    <circle cx="225" cy="375" r="3" fill="#FFF"/>
+    
+    <!-- Cabecita grande y adorable -->
+    <circle cx="200" cy="150" r="70" fill="#66BB6A" stroke="#4CAF50" stroke-width="3">
+      <animate attributeName="r" values="70;72;70" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Cachetes sonrosados -->
+    <circle cx="155" cy="160" r="15" fill="#FFB3BA" opacity="0.8">
+      <animate attributeName="r" values="15;17;15" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="245" cy="160" r="15" fill="#FFB3BA" opacity="0.8">
+      <animate attributeName="r" values="15;17;15" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Hojitas tiernas como cabello -->
+    <path d="M160 95 Q150 70 170 65 Q180 80 170 95 Q165 105 160 95 Z" fill="#A5D6A7" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 165 80; 3 165 80; 0 165 80" dur="6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M190 85 Q180 55 205 50 Q215 70 205 85 Q200 100 190 85 Z" fill="#A5D6A7" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 200 67; -2 200 67; 0 200 67" dur="7s" repeatCount="indefinite"/>
+    </path>
+    <path d="M220 90 Q210 65 235 60 Q245 80 235 90 Q230 105 220 90 Z" fill="#A5D6A7" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 227 75; -3 227 75; 0 227 75" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M240 100 Q250 75 230 70 Q220 85 230 100 Q235 110 240 100 Z" fill="#A5D6A7" stroke="#4CAF50" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" values="0 235 85; 4 235 85; 0 235 85" dur="8s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Ojitos grandes y tiernos -->
+    <ellipse cx="175" cy="135" rx="18" ry="20" fill="white" stroke="#4CAF50" stroke-width="2"/>
+    <ellipse cx="225" cy="135" rx="18" ry="20" fill="white" stroke="#4CAF50" stroke-width="2"/>
+    
+    <!-- Pupilas grandes y brillantes -->
+    <ellipse cx="175" cy="140" rx="12" ry="14" fill="#2E7D32">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 2,0; 0,0" dur="8s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="225" cy="140" rx="12" ry="14" fill="#2E7D32">
+      <animateTransform attributeName="transform" type="translate" values="0,0; -2,0; 0,0" dur="8s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Brillos grandes en los ojos -->
+    <ellipse cx="170" cy="130" rx="5" ry="7" fill="white">
+      <animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="220" cy="130" rx="5" ry="7" fill="white">
+      <animate attributeName="opacity" values="1;0.3;1" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Pequeños brillos adicionales -->
+    <circle cx="180" cy="135" r="2" fill="white" opacity="0.8"/>
+    <circle cx="230" cy="135" r="2" fill="white" opacity="0.8"/>
+    
+    <!-- Pestañitas tiernas -->
+    <path d="M160 120 Q165 115 170 120" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M180 120 Q185 115 190 120" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M210 120 Q215 115 220 120" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M230 120 Q235 115 240 120" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Naricita pequeña y adorable -->
+    <ellipse cx="200" cy="155" rx="4" ry="3" fill="#4CAF50"/>
+    <circle cx="198" cy="153" r="1" fill="#2E7D32" opacity="0.6"/>
+    <circle cx="202" cy="153" r="1" fill="#2E7D32" opacity="0.6"/>
+    
+    <!-- Sonrisa amplia y tierna -->
+    <path d="M170 175 Q200 195 230 175" fill="none" stroke="#2E7D32" stroke-width="5" stroke-linecap="round">
+      <animate attributeName="d" values="M170 175 Q200 195 230 175; M170 175 Q200 200 230 175; M170 175 Q200 195 230 175" dur="4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Dientecitos adorables -->
+    <rect x="195" y="185" width="4" height="6" fill="white" rx="2"/>
+    <rect x="201" y="185" width="4" height="6" fill="white" rx="2"/>
+    
+    <!-- Corazoncito en el pecho -->
+    <path d="M190 240 Q190 230 200 235 Q210 230 210 240 Q205 250 200 255 Q195 250 190 240 Z" fill="#E91E63" stroke="#C2185B" stroke-width="2">
+      <animate attributeName="fill" values="#E91E63; #F06292; #E91E63" dur="2s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Pequeño brillo en el corazón -->
+    <ellipse cx="195" cy="238" rx="2" ry="3" fill="white" opacity="0.8"/>
+  </g>
+  
+  <!-- Efectos mágicos adorables -->
+  <g opacity="0.7">
+    <!-- Estrellitas flotantes -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; -10,-20; -20,-40" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="8s" repeatCount="indefinite"/>
+      <path d="M320 200 L322 195 L324 200 L329 200 L325 203 L327 208 L322 205 L317 208 L319 203 L315 200 Z" fill="#FFD54F"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 8,-15; 16,-30" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="10s" repeatCount="indefinite"/>
+      <path d="M80 250 L82 245 L84 250 L89 250 L85 253 L87 258 L82 255 L77 258 L79 253 L75 250 Z" fill="#FFD54F"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; -5,-25; -10,-50" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="12s" repeatCount="indefinite"/>
+      <path d="M350 120 L352 115 L354 120 L359 120 L355 123 L357 128 L352 125 L347 128 L349 123 L345 120 Z" fill="#FFD54F"/>
+    </g>
+    
+    <!-- Corazoncitos flotantes -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; -12,-18; -24,-36" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="9s" repeatCount="indefinite"/>
+      <path d="M70 180 Q70 175 75 177 Q80 175 80 180 Q77 185 75 187 Q73 185 70 180 Z" fill="#F8BBD9"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 15,-22; 30,-44" dur="11s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="11s" repeatCount="indefinite"/>
+      <path d="M330 300 Q330 295 335 297 Q340 295 340 300 Q337 305 335 307 Q333 305 330 300 Z" fill="#F8BBD9"/>
+    </g>
+  </g>
+</svg>

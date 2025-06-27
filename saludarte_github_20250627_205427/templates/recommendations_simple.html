@@ -1,0 +1,397 @@
+{% extends "base.html" %}
+
+{% block title %}Tu Receta Natural - SaludArte App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header Section -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="prescription-header text-center">
+                <h1 class="text-canatura-dark mb-2">
+                    <i class="fas fa-prescription-bottle-alt me-2"></i>Tu Receta Natural
+                </h1>
+                <p class="lead text-muted">Sugerencias personalizadas basadas en tu perfil y síntomas</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Info Card -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body prescription-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-canatura-green mb-2">
+                                <i class="fas fa-user me-2"></i>Información del Paciente
+                            </h6>
+                            {% if user_profile %}
+                            <p class="mb-1"><strong>Edad:</strong> {{ user_profile.age }} años</p>
+                            <p class="mb-1"><strong>Género:</strong> {{ user_profile.gender.title() }}</p>
+                            <p class="mb-1"><strong>Peso:</strong> {{ user_profile.weight }} kg</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-canatura-green mb-2">
+                                <i class="fas fa-calendar me-2"></i>Fecha de Consulta
+                            </h6>
+                            <p class="mb-1">{{ moment().strftime('%d/%m/%Y') if moment else 'Hoy' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ultra AI Analysis Section -->
+    {% if ultra_result %}
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-gradient" style="background: linear-gradient(135deg, #2E8B57, #20B2AA);">
+                    <h5 class="mb-0 text-white">
+                        <i class="fas fa-brain me-2"></i>Análisis Ultra-Inteligente SaludArte IA
+                    </h5>
+                </div>
+                <div class="card-body">
+                    
+                    <!-- Medical Conditions -->
+                    {% if ultra_result.medical_condition %}
+                    <div class="alert alert-info border-0">
+                        <h6><i class="fas fa-stethoscope me-2"></i>Condición Médica Detectada</h6>
+                        <p class="mb-1"><strong>{{ ultra_result.medical_condition }}</strong></p>
+                        <small class="text-muted">Nivel: {{ ultra_result.warning_level }}</small>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Drug Interactions -->
+                    {% if ultra_result.drug_interactions %}
+                    <div class="alert alert-warning border-0">
+                        <h6><i class="fas fa-exclamation-triangle me-2"></i>Interacciones Medicamentosas</h6>
+                        {% for interaction in ultra_result.drug_interactions %}
+                        <div class="mb-2">
+                            <strong>{{ interaction.medication }}</strong> + {{ interaction.ingredient }}
+                            <br><small class="text-danger">{{ interaction.interaction }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Health Syndromes -->
+                    {% if ultra_result.health_syndromes %}
+                    <div class="alert alert-success border-0">
+                        <h6><i class="fas fa-puzzle-piece me-2"></i>Síndromes de Salud Detectados</h6>
+                        {% for syndrome in ultra_result.health_syndromes %}
+                        <div class="mb-2">
+                            <strong>{{ syndrome.syndrome.replace('_', ' ').title() }}</strong>
+                            <br><small class="text-muted">Criterios: {{ syndrome.matching_criteria|join(', ') }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Risk Assessment -->
+                    {% if ultra_result.risk_assessment %}
+                    <div class="alert alert-primary border-0">
+                        <h6><i class="fas fa-chart-line me-2"></i>Evaluación de Riesgos</h6>
+                        {% for risk_name, risk_info in ultra_result.risk_assessment.items() %}
+                        <div class="mb-2">
+                            <strong>{{ risk_name.replace('_', ' ').title() }}</strong>: 
+                            <span class="badge bg-{% if risk_info.risk_level == 'ALTO' %}danger{% elif risk_info.risk_level == 'MODERADO' %}warning{% else %}success{% endif %}">
+                                {{ risk_info.risk_level }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Personalized Recommendations -->
+                    {% if ultra_result.personalized_recommendations %}
+                    <div class="alert alert-light border-0">
+                        <h6><i class="fas fa-user-cog me-2"></i>Sugerencias Personalizadas</h6>
+                        {% for rec in ultra_result.personalized_recommendations %}
+                        <div class="mb-1">
+                            <small class="text-muted">{{ rec.recommendation }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Expert Medical Justification (when available) -->
+    {% if ultra_result.expert_mode and ultra_result.explanation %}
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="alert alert-info border-0 shadow-sm" style="background: linear-gradient(135deg, #e3f2fd 0%, #f1f8e9 100%); border-left: 5px solid #2196f3;">
+                <div class="d-flex align-items-start">
+                    <div class="me-3">
+                        <i class="fas fa-user-md fa-2x text-primary"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 text-primary">
+                            <i class="fas fa-stethoscope me-2"></i>Justificación Médica Especializada
+                        </h6>
+                        <p class="mb-0 text-dark" style="line-height: 1.6;">
+                            {{ ultra_result.explanation }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Recommendations Section -->
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            {% if recommendations %}
+                {% for recommendation in recommendations %}
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-canatura-light">
+                        <h5 class="mb-0 text-canatura-dark">
+                            <i class="fas fa-leaf me-2"></i>
+                            Productos para: <span class="text-canatura-green">{{ recommendation.symptom|title }}</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if recommendation.products %}
+                            <div class="row">
+                                {% for product in recommendation.products %}
+                                <div class="col-md-6 mb-3">
+                                    <div class="product-card h-100">
+                                        <div class="product-header">
+                                            <h6 class="product-name text-canatura-green mb-2">
+                                                <i class="fas fa-pills me-2"></i>{{ product.nombre }}
+                                            </h6>
+                                        </div>
+                                        
+                                        <div class="product-details">
+                                            <div class="detail-item">
+                                                <strong><i class="fas fa-heart me-2"></i>Beneficios:</strong>
+                                                <p>{{ product.beneficios }}</p>
+                                            </div>
+                                            
+                                            {% if product.ingredientes %}
+                                            <div class="detail-item">
+                                                <strong><i class="fas fa-leaf me-2"></i>Ingredientes principales:</strong>
+                                                <p>{{ product.ingredientes }}</p>
+                                            </div>
+                                            {% endif %}
+                                            
+                                            <div class="detail-item dosage-info">
+                                                <strong><i class="fas fa-clock me-2"></i>Dosis recomendada:</strong>
+                                                <p class="dosage">{{ product.dosis }}</p>
+                                            </div>
+                                            
+                                            {% if product.modo_de_uso %}
+                                            <div class="detail-item">
+                                                <strong><i class="fas fa-instructions me-2"></i>Modo de uso:</strong>
+                                                <p>{{ product.modo_de_uso }}</p>
+                                            </div>
+                                            {% endif %}
+                                            
+                                            {% if product.presentacion %}
+                                            <div class="detail-item">
+                                                <strong><i class="fas fa-box me-2"></i>Presentación:</strong>
+                                                <p>{{ product.presentacion }}</p>
+                                            </div>
+                                            {% endif %}
+                                            
+                                            {% if product.contradiccion and product.contradiccion != 'Sin contraindicaciones conocidas' %}
+                                            <div class="detail-item warning-info">
+                                                <strong><i class="fas fa-exclamation-triangle me-2"></i>Contraindicaciones:</strong>
+                                                <p class="text-warning">{{ product.contradiccion }}</p>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                {{ recommendation.message }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="card border-0 shadow">
+                    <div class="card-body text-center p-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No se encontraron sugerencias</h5>
+                        <p class="text-muted">Por favor, intenta describir tus síntomas de manera diferente.</p>
+                        <a href="{{ url_for('symptoms') }}" class="btn btn-canatura-green">
+                            <i class="fas fa-arrow-left me-2"></i>Volver a intentar
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    {% if recommendations %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="text-canatura-green mb-3">
+                        <i class="fas fa-share me-2"></i>Compartir tu receta natural
+                    </h6>
+                    <div class="d-flex gap-2 justify-content-center flex-wrap">
+                        <a href="{{ url_for('download_pdf') }}" class="btn btn-canatura-green">
+                            <i class="fas fa-download me-2"></i>Descargar PDF
+                        </a>
+                        <button onclick="shareWhatsApp()" class="btn btn-success">
+                            <i class="fab fa-whatsapp me-2"></i>Compartir por WhatsApp
+                        </button>
+                        <a href="{{ url_for('reset') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-home me-2"></i>Nueva consulta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Dietary Restrictions Section -->
+    {% if dietary_advice and dietary_advice.restrictions %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-warning bg-opacity-10">
+                    <h5 class="mb-0 text-warning-emphasis">
+                        <i class="fas fa-utensils me-2"></i>Sugerencias Alimentarias Personalizadas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% for restriction in dietary_advice.restrictions %}
+                    <div class="dietary-restriction mb-4">
+                        <h6 class="text-canatura-green mb-3">
+                            <i class="fas fa-leaf me-2"></i>Para {{ restriction.condition }}
+                        </h6>
+                        
+                        <div class="row">
+                            {% if restriction.avoid_foods %}
+                            <div class="col-md-6 mb-3">
+                                <div class="alert alert-danger">
+                                    <h6 class="alert-heading">
+                                        <i class="fas fa-times-circle me-2"></i>Alimentos a EVITAR:
+                                    </h6>
+                                    <p class="mb-0">{{ restriction.avoid_foods }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if restriction.recommended_foods %}
+                            <div class="col-md-6 mb-3">
+                                <div class="alert alert-success">
+                                    <h6 class="alert-heading">
+                                        <i class="fas fa-check-circle me-2"></i>Alimentos RECOMENDADOS:
+                                    </h6>
+                                    <p class="mb-0">{{ restriction.recommended_foods }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        {% if restriction.mexican_examples_avoid %}
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading">
+                                <i class="fas fa-flag me-2"></i>Ejemplos mexicanos a evitar:
+                            </h6>
+                            <p class="mb-0">{{ restriction.mexican_examples_avoid }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        {% if restriction.warnings %}
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Advertencias importantes:
+                            </h6>
+                            <p class="mb-0">{{ restriction.warnings }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        {% if restriction.medication_interactions %}
+                        <div class="alert alert-danger">
+                            <h6 class="alert-heading">
+                                <i class="fas fa-pills me-2"></i>Interacciones con medicamentos:
+                            </h6>
+                            <p class="mb-0">{{ restriction.medication_interactions }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% if not loop.last %}<hr>{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Medical Disclaimer -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="alert alert-warning">
+                <h6 class="alert-heading">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Importante - Aviso Médico
+                </h6>
+                <p class="mb-2">
+                    Esta sugerencia es generada por un asistente digital y <strong>no reemplaza</strong> 
+                    la consulta con un profesional de la salud.
+                </p>
+                <hr>
+                <ul class="mb-0 small">
+                    <li>Consulta siempre con tu médico antes de iniciar cualquier tratamiento</li>
+                    <li>Suspende el uso si experimentas reacciones adversas</li>
+                    <li>Respeta las dosis recomendadas</li>
+                    <li>Mantén los productos fuera del alcance de los niños</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple WhatsApp sharing function
+    function shareWhatsApp() {
+        let message = "🌿 RECETA NATURAL SALUDARTE 🌿\n\n";
+        message += "👤 PACIENTE:\n";
+        {% if user_profile %}
+        message += "• Edad: {{ user_profile.age }} años\n";
+        message += "• Género: {{ user_profile.gender.title() }}\n";
+        message += "• Peso: {{ user_profile.weight }} kg\n";
+        {% endif %}
+        
+        message += "\n💊 PRODUCTOS RECOMENDADOS:\n\n";
+        
+        {% for recommendation in recommendations %}
+            {% if recommendation.products %}
+                message += "🎯 Para {{ recommendation.symptom }}:\n";
+                {% for product in recommendation.products %}
+                    message += "• {{ product.nombre }}\n";
+                    message += "  Dosis: {{ product.dosis }}\n";
+                {% endfor %}
+                message += "\n";
+            {% endif %}
+        {% endfor %}
+        
+        message += "⚠️ Importante: Esta sugerencia no reemplaza la consulta médica profesional.\n\n";
+        message += "🌱 Generado por SaludArte App";
+        
+        const encodedMessage = encodeURIComponent(message);
+        window.open('https://wa.me/?text=' + encodedMessage, '_blank');
+    }
+</script>
+{% endblock %}

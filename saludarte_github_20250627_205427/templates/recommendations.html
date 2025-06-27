@@ -1,0 +1,713 @@
+{% extends "base.html" %}
+
+{% block title %}Tu Receta Natural - SaludArte App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header Section -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="prescription-header text-center">
+                <h1 class="text-canatura-dark mb-2">
+                    <i class="fas fa-prescription-bottle-alt me-2"></i>
+                    {% if user_profile.name %}
+                        Receta Natural para {{ user_profile.name }}
+                    {% else %}
+                        Tu Receta Natural
+                    {% endif %}
+                </h1>
+                <p class="lead text-muted">Sugerencias personalizadas basadas en tu perfil y síntomas</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Info Card -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body prescription-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-canatura-green mb-2">
+                                <i class="fas fa-user me-2"></i>Información del Paciente
+                            </h6>
+                            {% if user_profile.name %}
+                            <p class="mb-1"><strong>Nombre:</strong> {{ user_profile.name }}</p>
+                            {% endif %}
+                            <p class="mb-1"><strong>Edad:</strong> {{ user_profile.age }} años</p>
+                            <p class="mb-1"><strong>Género:</strong> {{ user_profile.gender.title() }}</p>
+                            {% if user_profile.weight %}
+                            <p class="mb-1"><strong>Peso:</strong> {{ user_profile.weight }} kg</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-canatura-green mb-2">
+                                <i class="fas fa-calendar me-2"></i>Fecha de Consulta
+                            </h6>
+                            <p class="mb-1">{{ "now"|strftime('%d/%m/%Y') }}</p>
+                            
+                            {% if user_profile.diabetes or user_profile.hypertension or user_profile.pregnancy %}
+                            <h6 class="text-warning mt-3 mb-2">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Condiciones Especiales
+                            </h6>
+                            {% if user_profile.diabetes %}<span class="badge bg-warning me-1">Diabetes</span>{% endif %}
+                            {% if user_profile.hypertension %}<span class="badge bg-danger me-1">Hipertensión</span>{% endif %}
+                            {% if user_profile.pregnancy %}<span class="badge bg-info me-1">Embarazo</span>{% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Symptoms Described -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h6 class="text-canatura-green mb-3">
+                        <i class="fas fa-comments me-2"></i>Síntomas Descritos
+                    </h6>
+                    <div class="symptoms-box">
+                        <p class="mb-0 fst-italic">"{{ symptoms_text }}"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            {% if recommendations %}
+                {% for recommendation in recommendations %}
+                <div class="recommendation-section mb-5">
+                    <div class="card border-0 shadow">
+                        <div class="card-header bg-canatura-light">
+                            <h5 class="mb-0 text-canatura-dark">
+                                <i class="fas fa-leaf me-2"></i>Para: {{ recommendation.symptom }}
+                            </h5>
+                            <p class="mb-0 text-muted">{{ recommendation.message }}</p>
+                        </div>
+                        
+                        <div class="card-body">
+                            {% if recommendation.products %}
+                                <div class="row">
+                                    {% for product in recommendation.products %}
+                                    <div class="col-md-6 mb-4">
+                                        <div class="product-card h-100" style="border: 2px solid #ddd; border-radius: 10px; overflow: hidden;">
+                                            <!-- SISTEMA DE SELECCIÓN SIMPLIFICADO -->
+                                            <div style="background-color: #339933; padding: 15px; text-align: center; color: white; border-radius: 8px; margin-bottom: 10px;">
+                                                <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                                                    <input type="checkbox" 
+                                                           id="checkbox_{{ loop.parent.loop.index0 }}_{{ loop.index0 }}"
+                                                           class="product-checkbox"
+                                                           data-symptom="{{ recommendation.symptom }}"
+                                                           data-product-name="{{ product.nombre }}"
+                                                           style="width: 18px; height: 18px; cursor: pointer;">
+                                                    <label for="checkbox_{{ loop.parent.loop.index0 }}_{{ loop.index0 }}" 
+                                                           style="font-size: 16px; font-weight: bold; cursor: pointer; margin: 0;">
+                                                        <i class="fas fa-check-circle me-2"></i>INCLUIR EN RECETA
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="product-header">
+                                                <h6 class="product-name">
+                                                    <i class="fas fa-pills me-2 text-canatura-green"></i>
+                                                    {{ product.nombre }}
+                                                </h6>
+                                            </div>
+                                            
+                                            <div class="product-details">
+                                                <div class="detail-item">
+                                                    <strong><i class="fas fa-heart me-2"></i>Beneficios:</strong>
+                                                    <p>{{ product.beneficios }}</p>
+                                                </div>
+                                                
+                                                <div class="detail-item">
+                                                    <strong><i class="fas fa-leaf me-2"></i>Ingredientes principales:</strong>
+                                                    <p>{{ product.ingredientes }}</p>
+                                                </div>
+                                                
+                                                <div class="detail-item dosage-info">
+                                                    <strong><i class="fas fa-clock me-2"></i>Dosis recomendada:</strong>
+                                                    <p class="dosage">{{ product.dosis }}</p>
+                                                </div>
+                                                
+                                                <div class="detail-item">
+                                                    <strong><i class="fas fa-instructions me-2"></i>Modo de uso:</strong>
+                                                    <p>{{ product.modo_de_uso }}</p>
+                                                </div>
+                                                
+                                                <div class="detail-item">
+                                                    <strong><i class="fas fa-box me-2"></i>Presentación:</strong>
+                                                    <p>{{ product.presentacion }}</p>
+                                                </div>
+                                                
+                                                {% if product.contradiccion and product.contradiccion != 'Sin contraindicaciones conocidas' %}
+                                                <div class="detail-item warning-info">
+                                                    <strong><i class="fas fa-exclamation-triangle me-2"></i>Contraindicaciones:</strong>
+                                                    <p class="text-warning">{{ product.contradiccion }}</p>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    {{ recommendation.message }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="card border-0 shadow">
+                    <div class="card-body text-center p-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No se encontraron sugerencias</h5>
+                        <p class="text-muted">No se pudieron encontrar productos específicos para tus síntomas en nuestro catálogo actual.</p>
+                        <a href="{{ url_for('symptoms') }}" class="btn btn-canatura-primary">
+                            <i class="fas fa-edit me-2"></i>Describir síntomas de nuevo
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Important Warnings -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h6 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Información Importante
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Esta sugerencia es generada por un asistente digital y <strong>no reemplaza</strong> la consulta médica profesional.
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Consulte con su médico antes de iniciar cualquier suplemento, especialmente si está tomando medicamentos.
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Suspenda el uso y consulte a un profesional si experimenta efectos adversos.
+                        </li>
+                        <li class="mb-0">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Los suplementos naturales pueden interactuar con medicamentos convencionales.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selection Summary -->
+    {% if recommendations %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm bg-light">
+                <div class="card-body">
+                    <h6 class="text-canatura-green mb-3">
+                        <i class="fas fa-check-square me-2"></i>Productos Seleccionados
+                    </h6>
+                    <div id="selectedProductsCount" class="mb-3">
+                        <span class="badge bg-canatura-green" id="selectionCounter">0 productos seleccionados</span>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-canatura me-2" onclick="selectAll()">
+                            <i class="fas fa-check-double me-2"></i>Seleccionar Todos
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="deselectAll()">
+                            <i class="fas fa-times me-2"></i>Deseleccionar Todos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Action Buttons -->
+    <div class="row justify-content-center mt-4 mb-5">
+        <div class="col-md-10">
+            <div class="action-buttons text-center">
+                <button type="button" class="btn btn-canatura-primary btn-lg me-2" onclick="generateCustomPDF()" id="customPdfBtn">
+                    <i class="fas fa-download me-2"></i>Descargar PDF Personalizado
+                </button>
+                <button type="button" class="btn btn-success btn-lg me-2" onclick="shareCustomWhatsApp()" id="customWhatsAppBtn">
+                    <i class="fab fa-whatsapp me-2"></i>Compartir Selección por WhatsApp
+                </button>
+                <button type="button" class="btn btn-outline-canatura btn-lg me-2" onclick="printCustom()" id="customPrintBtn">
+                    <i class="fas fa-print me-2"></i>Imprimir Selección
+                </button>
+                <a href="{{ url_for('reset') }}" class="btn btn-outline-secondary btn-lg">
+                    <i class="fas fa-redo me-2"></i>Nueva Consulta
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Product selection management
+    let selectedProducts = {};
+    
+    // Inicializar event listeners cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        // Agregar event listeners a todos los checkboxes
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                handleProductSelection(this);
+            });
+        });
+        
+        // Inicializar contador
+        updateSelectionCounter();
+    });
+
+    // Handle product selection with checkboxes - VERSIÓN SIMPLIFICADA
+    function handleProductSelection(checkbox) {
+        const symptom = checkbox.getAttribute('data-symptom');
+        const productName = checkbox.getAttribute('data-product-name');
+        
+        console.log('Producto seleccionado:', productName, 'Estado:', checkbox.checked);
+        
+        // Actualizar estilo visual del checkbox
+        const checkboxParent = checkbox.closest('div[style*="background-color: #339933"]');
+        if (checkbox.checked) {
+            checkboxParent.style.backgroundColor = '#228822';
+            checkboxParent.style.transform = 'scale(1.02)';
+            checkboxParent.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+        } else {
+            checkboxParent.style.backgroundColor = '#339933';
+            checkboxParent.style.transform = 'scale(1)';
+            checkboxParent.style.boxShadow = 'none';
+        }
+        
+        // Initialize symptom array if needed
+        if (!selectedProducts[symptom]) {
+            selectedProducts[symptom] = [];
+        }
+        
+        if (checkbox.checked) {
+            // Add product if not already selected
+            const exists = selectedProducts[symptom].some(p => p.nombre === productName);
+            if (!exists) {
+                selectedProducts[symptom].push({
+                    nombre: productName,
+                    // Aquí podrías agregar más datos del producto si es necesario
+                });
+            }
+        } else {
+            // Remove product from selection
+            selectedProducts[symptom] = selectedProducts[symptom].filter(p => p.nombre !== productName);
+            if (selectedProducts[symptom].length === 0) {
+                delete selectedProducts[symptom];
+            }
+        }
+        
+        // Update counter and buttons
+        updateSelectionCounter();
+    }
+
+    // Update selection counter and enable/disable buttons
+    function updateSelectionCounter() {
+        let totalSelected = 0;
+        Object.values(selectedProducts).forEach(symptomProducts => {
+            totalSelected += symptomProducts.length;
+        });
+        
+        const counter = document.getElementById('selectionCounter');
+        if (counter) {
+            counter.textContent = `${totalSelected} productos seleccionados`;
+        }
+        
+        // Enable/disable custom buttons
+        const hasSelection = totalSelected > 0;
+        const customPdfBtn = document.getElementById('customPdfBtn');
+        const customWhatsAppBtn = document.getElementById('customWhatsAppBtn');
+        const customPrintBtn = document.getElementById('customPrintBtn');
+        
+        if (customPdfBtn) {
+            customPdfBtn.disabled = !hasSelection;
+            customPdfBtn.style.opacity = hasSelection ? '1' : '0.5';
+        }
+        if (customWhatsAppBtn) {
+            customWhatsAppBtn.disabled = !hasSelection;
+            customWhatsAppBtn.style.opacity = hasSelection ? '1' : '0.5';
+        }
+        if (customPrintBtn) {
+            customPrintBtn.disabled = !hasSelection;
+            customPrintBtn.style.opacity = hasSelection ? '1' : '0.5';
+        }
+        
+        console.log('Selection updated. Total products:', totalSelected);
+        console.log('Selected products by symptom:', selectedProducts);
+    }
+
+    // Handle checkbox changes directly (legacy support)
+    function handleCheckboxChange(checkbox) {
+        console.log('Checkbox changed:', checkbox.dataset.symptom, checkbox.checked);
+        
+        const symptom = checkbox.dataset.symptom;
+        const productData = JSON.parse(checkbox.dataset.productData);
+        
+        if (!selectedProducts[symptom]) {
+            selectedProducts[symptom] = [];
+        }
+        
+        if (checkbox.checked) {
+            // Add product if not already selected
+            const exists = selectedProducts[symptom].some(p => p.nombre === productData.nombre);
+            if (!exists) {
+                selectedProducts[symptom].push(productData);
+            }
+        } else {
+            // Remove product
+            selectedProducts[symptom] = selectedProducts[symptom].filter(p => p.nombre !== productData.nombre);
+            if (selectedProducts[symptom].length === 0) {
+                delete selectedProducts[symptom];
+            }
+        }
+        
+        // Update counter
+        let totalSelected = 0;
+        Object.values(selectedProducts).forEach(symptomProducts => {
+            totalSelected += symptomProducts.length;
+        });
+        
+        const counter = document.getElementById('selectionCounter');
+        if (counter) {
+            counter.textContent = `${totalSelected} productos seleccionados`;
+        }
+        
+        // Enable/disable buttons
+        const hasSelection = totalSelected > 0;
+        const customPdfBtn = document.getElementById('customPdfBtn');
+        const customWhatsAppBtn = document.getElementById('customWhatsAppBtn');
+        const customPrintBtn = document.getElementById('customPrintBtn');
+        
+        if (customPdfBtn) customPdfBtn.disabled = !hasSelection;
+        if (customWhatsAppBtn) customWhatsAppBtn.disabled = !hasSelection;
+        if (customPrintBtn) customPrintBtn.disabled = !hasSelection;
+        
+        console.log('Selected products updated:', selectedProducts);
+    }
+    
+    // Update Hoji message for recommendations page
+    document.addEventListener('DOMContentLoaded', function() {
+        const hojiMessage = document.getElementById('hojiMessage');
+        const messages = [
+            "¡Aquí tienes tus sugerencias personalizadas! Puedes seleccionar exactamente los productos que quieres.",
+            "Usa los checkboxes para elegir los productos que más te interesen de cada síntoma.",
+            "Luego puedes descargar solo los productos seleccionados en PDF o compartirlos por WhatsApp."
+        ];
+        
+        let currentMessage = 0;
+        const updateMessage = () => {
+            hojiMessage.textContent = messages[currentMessage];
+            currentMessage = (currentMessage + 1) % messages.length;
+        };
+        
+        updateMessage();
+        setInterval(updateMessage, 6000);
+        
+        // Initialize product selection functionality
+        initializeProductSelection();
+    });
+    
+    function initializeProductSelection() {
+        console.log('Initializing product selection...');
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        console.log('Found checkboxes:', checkboxes.length);
+        
+        // Clear any existing selections first
+        selectedProducts = {};
+        
+        checkboxes.forEach((checkbox, index) => {
+            console.log(`Setting up checkbox ${index}:`, checkbox.dataset.symptom);
+            
+            // Ensure all checkboxes start unchecked
+            checkbox.checked = false;
+            
+            // Add event listener for changes
+            checkbox.addEventListener('change', function(e) {
+                console.log('Checkbox changed:', this.dataset.symptom, this.checked);
+                updateProductSelection(this);
+            });
+        });
+        
+        updateSelectionCounter();
+        console.log('Product selection initialized successfully');
+    }
+    
+    function updateProductSelection(checkbox) {
+        const symptom = checkbox.dataset.symptom;
+        const productData = JSON.parse(checkbox.dataset.productData);
+        
+        if (!selectedProducts[symptom]) {
+            selectedProducts[symptom] = [];
+        }
+        
+        if (checkbox.checked) {
+            // Add product if not already selected
+            const exists = selectedProducts[symptom].some(p => p.nombre === productData.nombre);
+            if (!exists) {
+                selectedProducts[symptom].push(productData);
+            }
+        } else {
+            // Remove product
+            selectedProducts[symptom] = selectedProducts[symptom].filter(p => p.nombre !== productData.nombre);
+            if (selectedProducts[symptom].length === 0) {
+                delete selectedProducts[symptom];
+            }
+        }
+        
+        updateSelectionCounter();
+    }
+    
+    function updateSelectionCounter() {
+        const counter = document.getElementById('selectionCounter');
+        let totalSelected = 0;
+        
+        Object.values(selectedProducts).forEach(symptomProducts => {
+            totalSelected += symptomProducts.length;
+        });
+        
+        counter.textContent = `${totalSelected} productos seleccionados`;
+        
+        // Enable/disable buttons based on selection
+        const hasSelection = totalSelected > 0;
+        document.getElementById('customPdfBtn').disabled = !hasSelection;
+        document.getElementById('customWhatsAppBtn').disabled = !hasSelection;
+        document.getElementById('customPrintBtn').disabled = !hasSelection;
+    }
+    
+    function selectAll() {
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                checkbox.checked = true;
+                updateProductSelection(checkbox);
+            }
+        });
+    }
+    
+    function deselectAll() {
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.checked = false;
+                updateProductSelection(checkbox);
+            }
+        });
+    }
+    
+    function generateCustomPDF() {
+        if (Object.keys(selectedProducts).length === 0) {
+            alert('Por favor selecciona al menos un producto para generar el PDF.');
+            return;
+        }
+        
+        // Send selected products to server for custom PDF generation
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/download_custom_pdf';
+        
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'selected_products';
+        input.value = JSON.stringify(selectedProducts);
+        
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
+    
+    function shareCustomWhatsApp() {
+        if (Object.keys(selectedProducts).length === 0) {
+            alert('Por favor selecciona al menos un producto para compartir.');
+            return;
+        }
+        
+        const userProfile = {{ user_profile|tojson }};
+        let message = `🌿 *${userProfile.name ? 'Receta Natural para ' + userProfile.name : 'Mi Receta Natural Personalizada'} - SaludArte*\\n\\n`;
+        
+        if (userProfile.name) {
+            message += `👤 *Paciente:* ${userProfile.name}\\n`;
+            message += `📅 *Fecha:* ${new Date().toLocaleDateString('es-ES')}\\n\\n`;
+        }
+        
+        Object.entries(selectedProducts).forEach(([symptom, products]) => {
+            message += `📋 *Para: ${symptom}*\\n`;
+            products.forEach(product => {
+                message += `💊 ${product.nombre}\\n`;
+                message += `   📝 Dosis: ${product.dosis}\\n`;
+                message += `   🕐 Modo de uso: ${product.modo_de_uso}\\n\\n`;
+            });
+        });
+        
+        message += "⚠️ *Recordatorio:* Esta sugerencia no reemplaza la consulta médica profesional.\\n\\n";
+        message += "🌱 Generado por SaludArte App - Tu asistente de salud natural";
+        
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+    
+    function printCustom() {
+        if (Object.keys(selectedProducts).length === 0) {
+            alert('Por favor selecciona al menos un producto para imprimir.');
+            return;
+        }
+        
+        // Create a new window with only selected products
+        const printWindow = window.open('', '_blank');
+        let printContent = generateCustomPrintContent();
+        
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        printWindow.print();
+    }
+    
+    function generateCustomPrintContent() {
+        const userProfile = {{ user_profile|tojson }};
+        const symptomsText = "{{ symptoms_text }}";
+        
+        let content = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Receta Natural Personalizada</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .header { text-align: center; margin-bottom: 30px; }
+                .patient-info { margin-bottom: 20px; }
+                .symptom-section { margin-bottom: 25px; border-left: 3px solid #4CAF50; padding-left: 15px; }
+                .product { margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; }
+                .warning { margin-top: 30px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeaa7; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>🌿 Receta Natural Personalizada</h1>
+                <p>SaludArte App - ${new Date().toLocaleDateString('es-ES')}</p>
+            </div>
+            
+            <div class="patient-info">
+                <h3>Información del Paciente</h3>
+                <p><strong>Edad:</strong> ${userProfile.age} años</p>
+                <p><strong>Género:</strong> ${userProfile.gender}</p>
+                ${userProfile.weight ? `<p><strong>Peso:</strong> ${userProfile.weight} kg</p>` : ''}
+                <p><strong>Síntomas descritos:</strong> "${symptomsText}"</p>
+            </div>
+        `;
+        
+        Object.entries(selectedProducts).forEach(([symptom, products]) => {
+            content += `
+            <div class="symptom-section">
+                <h3>Para: ${symptom}</h3>
+            `;
+            
+            products.forEach(product => {
+                content += `
+                <div class="product">
+                    <h4>${product.nombre}</h4>
+                    <p><strong>Beneficios:</strong> ${product.beneficios}</p>
+                    <p><strong>Dosis:</strong> ${product.dosis}</p>
+                    <p><strong>Modo de uso:</strong> ${product.modo_de_uso}</p>
+                    <p><strong>Presentación:</strong> ${product.presentacion}</p>
+                </div>
+                `;
+            });
+            
+            content += `</div>`;
+        });
+        
+        content += `
+            <div class="warning">
+                <h4>⚠️ Información Importante</h4>
+                <ul>
+                    <li>Esta recomendación es generada por un asistente digital y no reemplaza la consulta médica profesional.</li>
+                    <li>Consulte con su médico antes de iniciar cualquier suplemento.</li>
+                    <li>Suspenda el uso y consulte a un profesional si experimenta efectos adversos.</li>
+                </ul>
+            </div>
+        </body>
+        </html>
+        `;
+        
+        return content;
+    }
+
+    // WhatsApp sharing function
+    function shareWhatsApp() {
+        const recommendations = document.querySelectorAll('.recommendation-section');
+        let message = "🌿 *Mi Receta Natural de SaludArte App*\n\n";
+        
+        message += "📋 *Síntomas descritos:*\n";
+        message += "{{ symptoms_text }}\n\n";
+        
+        message += "💊 *Productos sugeridos:*\n";
+        
+        {% for recommendation in recommendations %}
+            {% if recommendation.products %}
+                message += "\n🔸 *Para {{ recommendation.symptom }}:*\n";
+                {% for product in recommendation.products %}
+                    message += "• {{ product.nombre }}\n";
+                    message += "  Dosis: {{ product.dosis }}\n";
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        
+        message += "\n⚠️ *Importante:* Esta sugerencia no reemplaza la consulta médica profesional.\n\n";
+        message += "🌱 Generado por SaludArte App";
+        
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+    }
+
+    // Date formatting using native JavaScript
+    function getCurrentDate() {
+        const now = new Date();
+        return now.toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+    }
+
+    // Replace date placeholder
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateElements = document.querySelectorAll('[data-date="current"]');
+        dateElements.forEach(el => {
+            el.textContent = getCurrentDate();
+        });
+    });
+
+    // Print styles
+    window.addEventListener('beforeprint', function() {
+        document.getElementById('hojiContainer').style.display = 'none';
+    });
+    
+    window.addEventListener('afterprint', function() {
+        document.getElementById('hojiContainer').style.display = 'block';
+    });
+</script>
+{% endblock %}

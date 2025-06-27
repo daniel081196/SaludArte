@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes para la piel -->
+    <radialGradient id="skinGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#FDBCB4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5A623;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradientes para el sombrero -->
+    <radialGradient id="hatGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6E6E6;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradientes para la ropa -->
+    <radialGradient id="clothesGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#90EE90;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Sombra suave -->
+    <filter id="softShadow">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+    
+    <!-- Brillo cartoon -->
+    <filter id="cartoonGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Sombra base -->
+  <ellipse cx="100" cy="185" rx="45" ry="8" fill="#000000" opacity="0.15"/>
+  
+  <!-- Cuerpo - camisa verde médica -->
+  <ellipse cx="100" cy="130" rx="45" ry="55" fill="url(#clothesGradient)" filter="url(#softShadow)"/>
+  
+  <!-- Botones de la camisa -->
+  <circle cx="100" cy="110" r="3" fill="#FFFFFF" stroke="#228B22" stroke-width="1"/>
+  <circle cx="100" cy="125" r="3" fill="#FFFFFF" stroke="#228B22" stroke-width="1"/>
+  <circle cx="100" cy="140" r="3" fill="#FFFFFF" stroke="#228B22" stroke-width="1"/>
+  
+  <!-- Cuello blanco -->
+  <path d="M85,95 Q100,90 115,95 L110,110 Q100,105 90,110 Z" fill="#FFFFFF"/>
+  
+  <!-- Cabeza -->
+  <circle cx="100" cy="70" r="40" fill="url(#skinGradient)" filter="url(#softShadow)"/>
+  
+  <!-- Bigote icónico estilo Mario -->
+  <ellipse cx="100" cy="80" rx="15" ry="6" fill="#8B4513" transform="rotate(5 100 80)"/>
+  <ellipse cx="95" cy="78" rx="8" ry="4" fill="#654321"/>
+  <ellipse cx="105" cy="78" rx="8" ry="4" fill="#654321"/>
+  
+  <!-- Sombrero médico blanco -->
+  <ellipse cx="100" cy="50" rx="35" ry="20" fill="url(#hatGradient)" filter="url(#softShadow)"/>
+  <ellipse cx="100" cy="45" rx="30" ry="15" fill="#FFFFFF"/>
+  
+  <!-- Cruz médica en el sombrero -->
+  <rect x="96" y="35" width="8" height="20" fill="#FF0000"/>
+  <rect x="86" y="41" width="28" height="8" fill="#FF0000"/>
+  
+  <!-- Ojos grandes estilo cartoon -->
+  <g>
+    <!-- Ojo izquierdo -->
+    <circle cx="88" cy="65" r="8" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+    <circle cx="88" cy="65" r="5" fill="#000000"/>
+    <circle cx="90" cy="63" r="2" fill="#FFFFFF" filter="url(#cartoonGlow)"/>
+    
+    <!-- Ojo derecho -->
+    <circle cx="112" cy="65" r="8" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+    <circle cx="112" cy="65" r="5" fill="#000000"/>
+    <circle cx="114" cy="63" r="2" fill="#FFFFFF" filter="url(#cartoonGlow)"/>
+    
+    <!-- Cejas expresivas -->
+    <path d="M82,55 Q88,52 94,55" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M106,55 Q112,52 118,55" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Nariz redonda -->
+  <circle cx="100" cy="73" r="4" fill="#F5A623" stroke="#E8931F" stroke-width="1"/>
+  <circle cx="102" cy="71" r="1" fill="#FFFFFF" opacity="0.8"/>
+  
+  <!-- Sonrisa alegre -->
+  <path d="M85,88 Q100,98 115,88" stroke="#000000" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Brazos animados -->
+  <g>
+    <!-- Brazo izquierdo levantado -->
+    <ellipse cx="60" cy="115" rx="8" ry="20" fill="url(#skinGradient)" transform="rotate(-35 60 115)"/>
+    
+    <!-- Guante blanco izquierdo -->
+    <circle cx="45" cy="95" r="10" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+    <ellipse cx="42" cy="88" rx="3" ry="6" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+    <ellipse cx="46" cy="87" rx="3" ry="6" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+    <ellipse cx="50" cy="88" rx="3" ry="6" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+    
+    <!-- Brazo derecho con pastilla -->
+    <ellipse cx="140" cy="115" rx="8" ry="20" fill="url(#skinGradient)" transform="rotate(35 140 115)"/>
+    
+    <!-- Guante blanco derecho -->
+    <circle cx="155" cy="95" r="10" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+    
+    <!-- Pastilla verde en la mano -->
+    <ellipse cx="160" cy="90" rx="4" ry="6" fill="#90EE90" stroke="#228B22" stroke-width="2"/>
+    <circle cx="160" cy="87" r="1" fill="#FFFFFF"/>
+    <circle cx="160" cy="93" r="1" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Piernas con pantalones azules -->
+  <ellipse cx="85" cy="170" rx="10" ry="20" fill="#4169E1"/>
+  <ellipse cx="115" cy="170" rx="10" ry="20" fill="#4169E1"/>
+  
+  <!-- Tirantes estilo Mario -->
+  <rect x="85" y="95" width="6" height="40" fill="#FF0000"/>
+  <rect x="109" y="95" width="6" height="40" fill="#FF0000"/>
+  
+  <!-- Zapatos grandes estilo cartoon -->
+  <ellipse cx="78" cy="185" rx="15" ry="6" fill="#8B4513"/>
+  <ellipse cx="122" cy="185" rx="15" ry="6" fill="#8B4513"/>
+  <ellipse cx="78" cy="183" rx="12" ry="4" fill="#A0522D"/>
+  <ellipse cx="122" cy="183" rx="12" ry="4" fill="#A0522D"/>
+  
+  <!-- Efectos de movimiento estilo cartoon -->
+  <g opacity="0.6">
+    <!-- Líneas de movimiento -->
+    <path d="M25,100 L35,95" stroke="#90EE90" stroke-width="2" stroke-linecap="round"/>
+    <path d="M20,110 L30,105" stroke="#90EE90" stroke-width="2" stroke-linecap="round"/>
+    <path d="M25,120 L35,115" stroke="#90EE90" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Estrellitas de salud -->
+    <g fill="#FFD700">
+      <path d="M165,30 L167,35 L172,35 L168,38 L170,43 L165,40 L160,43 L162,38 L158,35 L163,35 Z"/>
+      <path d="M175,50 L176,53 L179,53 L177,55 L178,58 L175,56 L172,58 L173,55 L171,53 L174,53 Z"/>
+    </g>
+    
+    <!-- Píldoras flotantes -->
+    <ellipse cx="30" cy="50" rx="3" ry="4" fill="#FF69B4"/>
+    <ellipse cx="170" cy="70" rx="3" ry="4" fill="#87CEEB"/>
+    <ellipse cx="25" cy="140" rx="3" ry="4" fill="#98FB98"/>
+  </g>
+  
+  <!-- Estetoscopio colgando -->
+  <g opacity="0.8">
+    <path d="M90,105 Q85,115 90,125" stroke="#C0C0C0" stroke-width="3" fill="none"/>
+    <path d="M110,105 Q115,115 110,125" stroke="#C0C0C0" stroke-width="3" fill="none"/>
+    <circle cx="100" cy="130" r="5" fill="#C0C0C0" stroke="#808080" stroke-width="2"/>
+  </g>
+  
+  <!-- Nombre del personaje -->
+  <text x="100" y="195" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="12" fill="#228B22" font-weight="bold">
+    ¡Dr. Verde está aquí! 🩺
+  </text>
+</svg>

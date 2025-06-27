@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://saludarte:password@db:5432/saludarte
+      - SESSION_SECRET=your-secret-key-here
+    depends_on:
+      - db
+    volumes:
+      - ./uploads:/app/uploads
+      - ./temp:/app/temp
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=saludarte
+      - POSTGRES_USER=saludarte
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
